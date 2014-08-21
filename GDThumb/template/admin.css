@@ -1,0 +1,13 @@
+#GDThumb td { padding-bottom: 12px; }
+#generate_cache { display: none; }
+#generate_cache p.buttons { margin-top: 3em; }
+#generate_cache ul { display: inline-block; margin-top: 0; }
+#generate_cache li { margin-right: 1em; float: left; }
+
+#cachedelete, #cachebuild { width: auto; }
+
+.content ul { list-style-type: none; }
+.content li { padding: 0.3em 0; }
+.content input[type="text"], .content select { width: 15em !important; }
+.content input[type="checkbox"] { width: 1.4em; margin-right: 1em; }
+.content label { min-width: 20%; display: inline-block; }

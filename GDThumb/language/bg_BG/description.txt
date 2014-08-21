@@ -1,0 +1,2 @@
+Plugin - GDThumb (plugin.lang.php) - Bulgarian Language [BG]
+Translated by turnokopa
