@@ -83,6 +83,13 @@ if (isset($_POST['cachedelete'])) {
 
 // Save configuration
 if (isset($_POST['submit'])) {
+
+  if (empty($_POST['method'])):
+    $method = "resize";
+  else:
+    $method = $_POST['method'];
+  endif;
+
   $params  = array(
     'apply_cat'       => !empty($_POST['apply_cat']),
     'apply_thumb'     => !empty($_POST['apply_thumb']),
@@ -91,7 +98,7 @@ if (isset($_POST['submit'])) {
     'nb_image_page'   => $_POST['nb_image_page'],
     'big_thumb'       => !empty($_POST['big_thumb']),
     'cache_big_thumb' => !empty($_POST['cache_big_thumb']),
-    'method'          => $_POST['method'],
+    'method'          => $method,
     'thumb_mode_album'=> $_POST['thumb_mode_album'],
     'thumb_mode_photo'=> $_POST['thumb_mode_photo'],
     'thumb_metamode'  => $_POST['thumb_metamode']
@@ -113,7 +120,6 @@ if (isset($_POST['submit'])) {
   elseif ($params['margin'] != $conf['gdThumb']['margin']) {
     delete_gdthumb_cache($conf['gdThumb']['height'] * 2 + $conf['gdThumb']['margin']);
   }
-  if ($params['method'] == 'crop') {} else { $params['method'] = "resize"; }
 
   if (empty($page['errors'])) {
     $query = '

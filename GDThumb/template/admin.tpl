@@ -1,7 +1,6 @@
 <div class="titrePage">
 <h2>GDThumb</h2>
 </div>
-{debug}
 <form action="" method="post">
 
 <fieldset id="GDThumb">

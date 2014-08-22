@@ -1,12 +1,6 @@
 <div class="loader"><img src="{$ROOT_URL}{$themeconf.img_dir}/ajax_loader.gif"></div>
 <ul class="thumbnailCategories thumbnails">
 
-{*
-// thumb_mode_album : top/top_static/bottom/bottom_static/hide
-// thumb_mode_photo : top/top_static/bottom/bottom_static/hide
-// thumb_metamode   : merged/hide
-*}
-
 {if !empty($category_thumbnails)}
 {assign var="has_cats" value="true" scope=root nocache}
 {foreach from=$category_thumbnails item=cat name=cat_loop}
