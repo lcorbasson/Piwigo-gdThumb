@@ -19,6 +19,7 @@ var GDThumb = {
         th.width = Math.round(GDThumb.max_height * width / height);
         th.height = GDThumb.max_height;
       }
+
       GDThumb.t.push(th);
     });
 
@@ -88,7 +89,6 @@ var GDThumb = {
       }
       GDThumb.t[0].crop = best_size.width;
       GDThumb.resize(first_thumb, GDThumb.big_thumb.width, GDThumb.big_thumb.height, best_size.width, best_size.height, true);
-
     }
 
     if (best_size.width == 1) {
@@ -102,12 +102,17 @@ var GDThumb = {
 
     width_count = GDThumb.margin;
     max_height = 0;
+    last_height = GDThumb.max_height;
     line = 1;
     thumb_process = new Array;
 
     for (i=GDThumb.t[0].crop!=false?1:0;i<GDThumb.t.length;i++) {
 
-      width_count += GDThumb.t[i].width + GDThumb.margin;
+      if (GDThumb.method == 'square') {
+        width_count += GDThumb.max_height + GDThumb.margin;
+      } else {
+        width_count += GDThumb.t[i].width + GDThumb.margin;
+      }
       max_height = Math.max(GDThumb.t[i].height, max_height);
       thumb_process.push(GDThumb.t[i]);
 
@@ -134,6 +139,7 @@ var GDThumb = {
             new_width = Math.round(new_width);
           }
           GDThumb.resize(jQuery('ul.thumbnails img.thumbnail').eq(thumb_process[j].index), thumb_process[j].real_width, thumb_process[j].real_height, new_width, new_height, false);
+          last_height = Math.min(last_height, new_height);
 
           width_count += new_width + GDThumb.margin;
         }
@@ -144,9 +150,13 @@ var GDThumb = {
       }
     }
 
+    if (last_height == 0) {
+      last_height = GDThumb.max_height;
+    }
+
     // Last line does not need to be cropped
     for (j=0;j<thumb_process.length;j++) {
-      GDThumb.resize(jQuery('ul.thumbnails img.thumbnail').eq(thumb_process[j].index), thumb_process[j].real_width, thumb_process[j].real_height, thumb_process[j].width, max_height, false);
+      GDThumb.resize(jQuery('ul.thumbnails img.thumbnail').eq(thumb_process[j].index), thumb_process[j].real_width, thumb_process[j].real_height, thumb_process[j].width, last_height, false);
     }
 
     if (main_width != jQuery('ul.thumbnails').width()) {
@@ -155,8 +165,25 @@ var GDThumb = {
   },
 
   resize: function(thumb, width, height, new_width, new_height, is_big) {
+    if ((!is_big) && (GDThumb.method == 'square')) {
+      thumb.css({height: '', width: ''});
+      new_width = new_height;
 
-    if (GDThumb.method == 'resize' || height < new_height || width < new_width) {
+      if (width < height) {
+        real_width = new_width;
+        real_height = Math.round(height * new_width / width);
+      } else {
+        real_height = new_width;
+        real_width = Math.round(width * new_height / height);
+      }
+
+      height_crop = Math.round((real_height - new_height)/2);
+      width_crop = Math.round((real_width - new_height)/2);
+      thumb.css({
+        height: real_height+'px',
+        width: real_width+'px'
+      });
+    }else if (GDThumb.method == 'resize' || height < new_height || width < new_width) {
       real_width = new_width;
       real_height = new_height;
       width_crop = 0;

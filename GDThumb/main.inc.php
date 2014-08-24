@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: gdThumb
-Version: 1.0.2
+Version: 1.0.3
 Description: Display thumbnails as patchwork
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=771
 Author: Serge Dosyukov 
@@ -16,7 +16,6 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 if (mobile_theme()) return;
 
 define('GDTHUMB_PATH' , PHPWG_PLUGINS_PATH . basename(dirname(__FILE__)) . '/');
-
 
 if (!isset($conf['gdThumb'])):
   include(dirname(__FILE__).'/config_default.inc.php');

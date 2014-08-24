@@ -53,7 +53,7 @@
 
 {footer_script require="gdthumb"}
 $(function() {
-{*  var error_icon = "{$ROOT_URL}{$themeconf.icon_dir}/errors_small.png", max_requests = {$maxRequests}; *}
+  {*  var error_icon = "{$ROOT_URL}{$themeconf.icon_dir}/errors_small.png", max_requests = {$maxRequests}; *}
 
   GDThumb.max_height = {$GDThumb.height};
   GDThumb.margin = {$GDThumb.margin};

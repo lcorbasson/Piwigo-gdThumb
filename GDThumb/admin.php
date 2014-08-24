@@ -5,13 +5,13 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 function delete_gdthumb_cache($height) {
   $pattern = '#.*-cu_s9999x'.$height.'\.[a-zA-Z0-9]{3,4}$#';
   if ($contents = @opendir(PHPWG_ROOT_PATH.PWG_DERIVATIVE_DIR)):
-    while (($node = readdir($contents)) !== false) {
+    while (($node = readdir($contents)) !== false):
       if ($node != '.'
           and $node != '..'
-          and is_dir(PHPWG_ROOT_PATH.PWG_DERIVATIVE_DIR.$node)) {
+          and is_dir(PHPWG_ROOT_PATH.PWG_DERIVATIVE_DIR.$node)):
         clear_derivative_cache_rec(PHPWG_ROOT_PATH.PWG_DERIVATIVE_DIR.$node, $pattern);
-      }
-    }
+      endif;
+    endwhile;
     closedir($contents);
   endif;
 }
@@ -90,13 +90,19 @@ if (isset($_POST['submit'])) {
     $method = $_POST['method'];
   endif;
 
+  $big_thumb = !empty($_POST['big_thumb']);
+  if (($method == "square") && ($big_thumb)):
+    array_push($page['warnings'], l10n('"Double the size of the first thumbnail" is not supported in Square Mode'));
+    $big_thumb = false;
+  endif;
+
   $params  = array(
     'apply_cat'       => !empty($_POST['apply_cat']),
     'apply_thumb'     => !empty($_POST['apply_thumb']),
     'height'          => $_POST['height'],
     'margin'          => $_POST['margin'],
     'nb_image_page'   => $_POST['nb_image_page'],
-    'big_thumb'       => !empty($_POST['big_thumb']),
+    'big_thumb'       => $big_thumb,
     'cache_big_thumb' => !empty($_POST['cache_big_thumb']),
     'method'          => $method,
     'thumb_mode_album'=> $_POST['thumb_mode_album'],

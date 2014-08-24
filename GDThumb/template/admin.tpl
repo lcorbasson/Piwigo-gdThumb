@@ -15,8 +15,15 @@
 
     <li><label><span class="graphicalCheckbox {if $BIG_THUMB}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="big_thumb" id="big_thumb" type="checkbox" value="1" {if $BIG_THUMB}checked="checked"{/if}>{'Double the size of the first thumbnail'|@translate}</label></li>
     <li><label><span class="graphicalCheckbox {if $CACHE_BIG_THUMB}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="cache_big_thumb" id="cache_big_thumb" type="checkbox" value="1" {if $CACHE_BIG_THUMB}checked="checked"{/if}>{'Cache the big thumbnails (recommended)'|@translate}</label></li>
-    <li><label><span class="graphicalCheckbox {if $METHOD == 'crop'}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="method" id="method" type="checkbox" value="crop" {if $METHOD == 'crop'}checked="checked"{/if}>{'Scale thumbnails'|@translate}</label></li>
 
+    <li>
+      <label for="method">{'Scale thumbnails'|@translate}</label>
+      <select id="method" name="method" >
+        <option {if $METHOD == 'crop'}selected="selected"{/if} value="crop">{'Crop (Default)'|@translate}</option>
+        <option {if $METHOD == 'resize'}selected="selected"{/if} value="resize">{'Resize'|@translate}</option>
+        <option {if $METHOD == 'square'}selected="selected"{/if} value="square">{'Square'|@translate}</option>
+      </select>
+    </li>
     <li>
       <label for="thumb_mode_album">{'Title Display Mode (Album)'|@translate}</label>
       <select id="thumb_mode_album" name="thumb_mode_album" >
