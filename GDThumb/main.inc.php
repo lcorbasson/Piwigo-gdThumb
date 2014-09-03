@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: gdThumb
-Version: 1.0.3
+Version: 1.0.4
 Description: Display thumbnails as patchwork
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=771
 Author: Serge Dosyukov 
@@ -36,12 +36,8 @@ if (isset($_GET['rvts'])) {
 }
 
 add_event_handler('init', 'GDThumb_init');
-if ($conf['gdThumb']['apply_thumb']):
-  add_event_handler('loc_begin_index', 'GDThumb_index', 60);
-endif;
-if ($conf['gdThumb']['apply_cat']):
-  add_event_handler('loc_end_index_category_thumbnails', 'GDThumb_process_category', 50, 2);
-endif;
+add_event_handler('loc_begin_index', 'GDThumb_index', 60);
+add_event_handler('loc_end_index_category_thumbnails', 'GDThumb_process_category', 50, 2);
 add_event_handler('get_admin_plugin_menu_links', 'GDThumb_admin_menu');
 add_event_handler('loc_end_index', 'GDThumb_remove_thumb_size');
 
@@ -49,8 +45,6 @@ function GDThumb_init() {
   global $conf, $user, $page, $stripped;
 
   $confTemp = $conf['gdThumb'];
-  $conf['apply_cat']        = $confTemp['apply_cat'];
-  $conf['apply_thumb']      = $confTemp['apply_thumb'];
   $user['nb_image_page']    = $confTemp['nb_image_page'];
   $page['nb_image_page']    = $confTemp['nb_image_page'];
   $stripped['maxThumb']     = $confTemp['nb_image_page'];

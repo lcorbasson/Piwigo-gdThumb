@@ -1,11 +1,26 @@
 {if !empty($thumbnails)}
+
+{*
+{$thumbnails|@print_r:true}
+*}
+
 {foreach from=$thumbnails item=thumbnail}
 {assign var=derivative value=$pwg->derivative($GDThumb_derivative_params, $thumbnail.src_image)}
 <li class="gdthumb">
   {if $GDThumb.thumb_mode_photo !== "hide" }
   <span class="thumbLegend {$GDThumb.thumb_mode_photo}">
     <span class="thumbName thumbTitle">
+    {if $GDThumb.normalize_title == "on"}
+      {assign var="file_title" value=$thumbnail.NAME|cat:"."}
+      {assign var="file_name" value=$thumbnail.file|replace:"_":" "}
+      {if $file_name|strstr:$file_title}
+      Photo {$thumbnail.id}
+      {else}
       {$thumbnail.NAME}
+      {/if}
+    {else}
+      {$thumbnail.NAME}
+    {/if}
       {if !empty($thumbnail.icon_ts)}
       <img title="{$thumbnail.icon_ts.TITLE}" src="{$ROOT_URL}{$themeconf.icon_dir}/recent.png" alt="(!)">
       {/if}
@@ -26,7 +41,10 @@
   </span>
   {/if}
   <a href="{$thumbnail.URL}">
-    <img class="thumbnail" {if !$derivative->is_cached()}data-{/if}src="{$derivative->get_url()}" alt="{$thumbnail.TN_ALT}" title="{$thumbnail.TN_TITLE}" {$derivative->get_size_htm()}>
+    <img class="thumbnail" {if $derivative->is_cached()}src="{$derivative->get_url()}"{else}src="{$ROOT_URL}{$themeconf.icon_dir}/img_small.png" data-src="{$derivative->get_url()}"{/if} alt="{$thumbnail.TN_ALT}" title="{$thumbnail.TN_TITLE}" {$derivative->get_size_htm()}>
+
+{*  <img class="thumbnail" {if !$derivative->is_cached()}data-{/if}src="{$derivative->get_url()}" alt="{$thumbnail.TN_ALT}" title="{$thumbnail.TN_TITLE}" {$derivative->get_size_htm()}>
+*}
   </a>
 </li>
 {/foreach}
@@ -39,21 +57,14 @@
 
 {footer_script require="gdthumb"}
 
-  {if $has_cats=="true"}
+  {if isset($has_cats)}
   {else}
 $(function() {
-  GDThumb.max_height = {$GDThumb.height};
-  GDThumb.margin = {$GDThumb.margin};
-  GDThumb.method = '{$GDThumb.method}';
-
   {if isset($GDThumb_big)}
   {assign var=gt_size value=$GDThumb_big->get_size()}
-  GDThumb.big_thumb = {ldelim}id:{$GDThumb_big->src_image->id},src:'{$GDThumb_big->get_url()}',width:{$gt_size[0]},height:{$gt_size[1]}{rdelim};
+  var big_thumb = {ldelim}id: {$GDThumb_big->src_image->id}, src: '{$GDThumb_big->get_url()}', width: {$gt_size[0]}, height: {$gt_size[1]}{rdelim};
   {/if}
-
-  GDThumb.build();
-  jQuery(window).bind('RVTS_loaded', GDThumb.build);
-  jQuery('ul.thumbnails').resize(GDThumb.process);
+  GDThumb.setup('{$GDThumb.method}', {$GDThumb.height}, {$GDThumb.margin}, false, big_thumb);
 });
   {/if}
 {/footer_script}

@@ -2,7 +2,7 @@
 <ul class="thumbnailCategories thumbnails">
 
 {if !empty($category_thumbnails)}
-{assign var="has_cats" value="true" scope=root nocache}
+{assign var=has_cats value="true" scope=root nocache}
 {foreach from=$category_thumbnails item=cat name=cat_loop}
 {assign var=derivative value=$pwg->derivative($GDThumb_derivative_params, $cat.representative.src_image)}
 {if !$derivative->is_cached()}
@@ -53,19 +53,10 @@
 
 {footer_script require="gdthumb"}
 $(function() {
-  {*  var error_icon = "{$ROOT_URL}{$themeconf.icon_dir}/errors_small.png", max_requests = {$maxRequests}; *}
-
-  GDThumb.max_height = {$GDThumb.height};
-  GDThumb.margin = {$GDThumb.margin};
-  GDThumb.method = '{$GDThumb.method}';
-
   {if isset($GDThumb_big)}
   {assign var=gt_size value=$GDThumb_big->get_size()}
-  GDThumb.big_thumb = {ldelim}id:{$GDThumb_big->src_image->id},src:'{$GDThumb_big->get_url()}',width:{$gt_size[0]},height:{$gt_size[1]}{rdelim};
+  var big_thumb = {ldelim}id: {$GDThumb_big->src_image->id}, src: '{$GDThumb_big->get_url()}', width: {$gt_size[0]}, height: {$gt_size[1]}{rdelim};
   {/if}
-
-  GDThumb.build();
-  jQuery(window).bind('RVTS_loaded', GDThumb.build);
-  jQuery('ul.thumbnails').resize(GDThumb.process);
+  GDThumb.setup('{$GDThumb.method}', {$GDThumb.height}, {$GDThumb.margin}, true, big_thumb);
 });
 {/footer_script}

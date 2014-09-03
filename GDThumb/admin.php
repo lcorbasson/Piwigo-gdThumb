@@ -91,19 +91,13 @@ if (isset($_POST['submit'])) {
   endif;
 
   $big_thumb = !empty($_POST['big_thumb']);
-  if (($method == "square") && ($big_thumb)):
-    array_push($page['warnings'], l10n('"Double the size of the first thumbnail" is not supported in Square Mode'));
-    $big_thumb = false;
-  endif;
-
   $params  = array(
-    'apply_cat'       => !empty($_POST['apply_cat']),
-    'apply_thumb'     => !empty($_POST['apply_thumb']),
     'height'          => $_POST['height'],
     'margin'          => $_POST['margin'],
     'nb_image_page'   => $_POST['nb_image_page'],
     'big_thumb'       => $big_thumb,
     'cache_big_thumb' => !empty($_POST['cache_big_thumb']),
+    'normalize_title' => !empty($_POST['normalize_title']),
     'method'          => $method,
     'thumb_mode_album'=> $_POST['thumb_mode_album'],
     'thumb_mode_photo'=> $_POST['thumb_mode_photo'],
@@ -147,16 +141,19 @@ else:
   $custom_css = "no";
 endif;
 
+if (!isset($params['normalize_title'])):
+  $params['normalize_title'] = "off";
+endif;
+
 // Configuration du template
 $template->assign(
   array(
-    'APPLY_CAT'        => $params['apply_cat'],
-    'APPLY_THUMB'      => $params['apply_thumb'],
     'HEIGHT'           => $params['height'],
     'MARGIN'           => $params['margin'],
     'NB_IMAGE_PAGE'    => $params['nb_image_page'],
     'BIG_THUMB'        => $params['big_thumb'],
     'CACHE_BIG_THUMB'  => $params['cache_big_thumb'],
+    'NORMALIZE_TITLE'  => $params['normalize_title'],
     'METHOD'           => $params['method'],
     'THUMB_MODE_ALBUM' => $params['thumb_mode_album'],
     'THUMB_MODE_PHOTO' => $params['thumb_mode_photo'],

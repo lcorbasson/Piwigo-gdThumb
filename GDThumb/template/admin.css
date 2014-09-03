@@ -8,6 +8,7 @@
 
 .content ul { list-style-type: none; }
 .content li { padding: 0.3em 0; }
-.content input[type="text"], .content select { width: 15em !important; }
+.content input[type="text"] { width: 20em !important; margin-right: 1em !important; }
+.content select { width: 21em !important; }
 .content input[type="checkbox"] { width: 1.4em; margin-right: 1em; }
-.content label { min-width: 20%; display: inline-block; }
+.content label { display: inline-block; }

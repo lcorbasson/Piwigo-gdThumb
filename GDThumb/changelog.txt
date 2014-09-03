@@ -27,6 +27,16 @@ details. You should have received a copy of the GNU General Public License along
 51 Franklin Street Fifth Floor, Boston, MA  02110-1301, USA.
 
 === Changelog ===
+version 1.0.4
++ Merge thumbs for albums and images into one list before processing. 
+  This may conflict with Lightbox plugin if items are mixed
++ Full support for square thumbs
++ New overlay mode type - Overlay - on hover cover entire thumb. Metadata bottom left aligned
++ Admin: "Apply to album/image thumbs" options deprecated
++ Admin: New option "Normalize Image Title" - if enabled, images with Title matching File name would be shown as "Photo ID"
+- Remove second loader element from pages with album and image thumbs
+- Fixed issue with Stripped theme in photo lists due to different class structure
+
 version 1.0.3
 + Added support for "Square" Scale thumbnails mode (experimental)
 - Fixed issue caption overlay partially visible in "stripped" theme
