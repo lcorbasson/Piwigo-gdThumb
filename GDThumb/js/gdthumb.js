@@ -8,6 +8,7 @@ var GDThumb = {
   method: 'crop',
   t: new Array,
 
+  // Initialize plugin logic, perform necessary steps
   setup: function(method, max_height, margin, do_merge, big_thumb) {
 
     jQuery('ul#thumbnails').addClass("thumbnails");
@@ -25,6 +26,7 @@ var GDThumb = {
     jQuery("ul.thumbnails .thumbLegend.overlay").click( function() { window.location.href = $(this).parent().find('a').attr('href'); });
   },
 
+  // Merge categories and picture lists
   merge: function() {
 
     var mainlists = $('.content ul.thumbnails');
@@ -38,6 +40,7 @@ var GDThumb = {
     }
   },
 
+  // Build thumb metadata
   build: function () {
 
     if ((GDThumb.method == 'square') && (GDThumb.big_thumb != null) && (GDThumb.big_thumb.height != GDThumb.big_thumb.width)) {
@@ -59,8 +62,8 @@ var GDThumb = {
       if ((GDThumb.method == 'square') && (th.height != th.width)) {
         th.height = GDThumb.max_height;
         th.width  = GDThumb.max_height;
-      }
-      if (height < GDThumb.max_height) {
+        th.crop   = GDThumb.max_height;
+      } else if (height < GDThumb.max_height) {
         th.width = Math.round(GDThumb.max_height * width / height);
         th.height = GDThumb.max_height;
       }
@@ -77,6 +80,7 @@ var GDThumb = {
     GDThumb.process();
   },
 
+  // Adjust thumb attributes to match plugin settings
   process: function() {
 
     var width_count = GDThumb.margin;
@@ -90,6 +94,14 @@ var GDThumb = {
       if (GDThumb.big_thumb != null) {
         best_size.width = GDThumb.big_thumb.width;
         best_size.height = GDThumb.big_thumb.height;
+
+        if (GDThumb.big_thumb.src != first_thumb.attr('src')) {
+          first_thumb.attr('src', GDThumb.big_thumb.src).attr({width: GDThumb.big_thumb.width, height: GDThumb.big_thumb.height});
+          GDThumb.t[0].width = GDThumb.big_thumb.width;
+          GDThumb.t[0].height = GDThumb.big_thumb.height;
+        }
+        GDThumb.t[0].crop = best_size.width;
+        GDThumb.resize(first_thumb, GDThumb.t[0].real_width, GDThumb.t[0].real_height, GDThumb.big_thumb.width, GDThumb.big_thumb.height, true);
       }else{
         best_size.width  = GDThumb.max_height;
         best_size.height = GDThumb.max_height;
@@ -136,16 +148,15 @@ var GDThumb = {
             }
           }
         }
+        if (GDThumb.big_thumb.src != first_thumb.attr('src')) {
+          first_thumb.attr('src', GDThumb.big_thumb.src).attr({width: GDThumb.big_thumb.width, height: GDThumb.big_thumb.height});
+          GDThumb.t[0].width = GDThumb.big_thumb.width;
+          GDThumb.t[0].height = GDThumb.big_thumb.height;
+        }
+        GDThumb.t[0].crop = best_size.width;
+        GDThumb.resize(first_thumb, GDThumb.big_thumb.width, GDThumb.big_thumb.height, best_size.width, best_size.height, true);
       }
     }
-
-    if (GDThumb.big_thumb.src != first_thumb.attr('src')) {
-      first_thumb.attr('src', GDThumb.big_thumb.src).attr({width: GDThumb.big_thumb.width, height: GDThumb.big_thumb.height});
-      GDThumb.t[0].width = GDThumb.big_thumb.width;
-      GDThumb.t[0].height = GDThumb.big_thumb.height;
-    }
-    GDThumb.t[0].crop = best_size.width;
-    GDThumb.resize(first_thumb, GDThumb.big_thumb.width, GDThumb.big_thumb.height, best_size.width, best_size.height, true);
 
     if (best_size.width == 1) {
       if (GDThumb.small_thumb != null && GDThumb.small_thumb.src != first_thumb.attr('src')) {  

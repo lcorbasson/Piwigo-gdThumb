@@ -27,11 +27,16 @@ details. You should have received a copy of the GNU General Public License along
 51 Franklin Street Fifth Floor, Boston, MA  02110-1301, USA.
 
 === Changelog ===
+version 1.0.5
++ Admin: Metadata Display Mode extended to allow exclusion of Catalog Description from the Thumb content
+- Fixed issue with some js variables not being initialized when big thumb mode is used
+- Fixed issue when "Big Thumb" in Square mode does not keep size ratio
+
 version 1.0.4
 + Merge thumbs for albums and images into one list before processing. 
   This may conflict with Lightbox plugin if items are mixed
 + Full support for square thumbs
-+ New overlay mode type - Overlay - on hover cover entire thumb. Metadata bottom left aligned
++ New overlay mode type - Overlay - on hover covers entire thumb. Metadata bottom left aligned
 + Admin: "Apply to album/image thumbs" options deprecated
 + Admin: New option "Normalize Image Title" - if enabled, images with Title matching File name would be shown as "Photo ID"
 - Remove second loader element from pages with album and image thumbs

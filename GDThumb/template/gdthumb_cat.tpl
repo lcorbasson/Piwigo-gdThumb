@@ -18,13 +18,15 @@
         <img title="{$cat.icon_ts.TITLE}" src="{$ROOT_URL}{$themeconf.icon_dir}/recent{if $cat.icon_ts.IS_CHILD_DATE}_by_child{/if}.png" alt="(!)">
         {/if}
         </span>
-        {if $GDThumb.thumb_metamode == "merged"}
+        {if $GDThumb.thumb_metamode !== "hide"}
         {if isset($cat.INFO_DATES) }
         <span class="dates">{$cat.INFO_DATES}</span>
         {/if}
         <span class="Nb_images">{$cat.CAPTION_NB_IMAGES}</span>
+        {if $GDThumb.thumb_metamode == "merged_desc"}
         {if not empty($cat.DESCRIPTION)}
         <span class="description">{$cat.DESCRIPTION}</span>
+        {/if}
         {/if}
         {/if}
       </span>
@@ -56,6 +58,8 @@ $(function() {
   {if isset($GDThumb_big)}
   {assign var=gt_size value=$GDThumb_big->get_size()}
   var big_thumb = {ldelim}id: {$GDThumb_big->src_image->id}, src: '{$GDThumb_big->get_url()}', width: {$gt_size[0]}, height: {$gt_size[1]}{rdelim};
+  {else}
+  var big_thumb = null;
   {/if}
   GDThumb.setup('{$GDThumb.method}', {$GDThumb.height}, {$GDThumb.margin}, true, big_thumb);
 });

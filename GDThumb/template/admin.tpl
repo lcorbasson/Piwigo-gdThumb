@@ -1,5 +1,5 @@
 <div class="titrePage">
-<h2>GDThumb - 1.0.4</h2>
+<h2>GDThumb - 1.0.5</h2>
 </div>
 <form action="" method="post">
 
@@ -54,9 +54,10 @@
     <li>
       <select id="thumb_metamode" name="thumb_metamode" >
         <option {if $THUMB_METAMODE=="merged"}selected="selected"{/if} value="merged">{'Merged (Default)'|@translate}</option>
+        <option {if $THUMB_METAMODE=="merged_desc"}selected="selected"{/if} value="merged_desc">{'Merged with Description'|@translate}</option>
         <option {if $THUMB_METAMODE=="hide"}selected="selected"{/if} value="hide">{'Hide'|@translate}</option>
       </select>
-      <label for="thumb_metamode">{'Meta Data Display Mode'|@translate}</label>
+      <label for="thumb_metamode">{'Metadata Display Mode'|@translate}</label>
     </li>
   </ul>
 </fieldset>
