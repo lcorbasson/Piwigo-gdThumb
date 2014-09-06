@@ -1,5 +1,5 @@
 <div class="titrePage">
-<h2>GDThumb - 1.0.5</h2>
+<h2>GDThumb - 1.0.6</h2>
 </div>
 <form action="" method="post">
 

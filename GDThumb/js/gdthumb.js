@@ -105,6 +105,7 @@ var GDThumb = {
       }else{
         best_size.width  = GDThumb.max_height;
         best_size.height = GDThumb.max_height;
+        GDThumb.resize(first_thumb, GDThumb.t[0].real_width, GDThumb.t[0].real_height, GDThumb.t[0].width, GDThumb.t[0].height, true);
       }
     } else {
       if (GDThumb.big_thumb != null && GDThumb.big_thumb.height < main_width * GDThumb.max_first_thumb_width) {

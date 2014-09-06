@@ -27,6 +27,9 @@ details. You should have received a copy of the GNU General Public License along
 51 Franklin Street Fifth Floor, Boston, MA  02110-1301, USA.
 
 === Changelog ===
+version 1.0.6
+- Fixed issue where size of the first thumb was not initialized when "Big Thumb" in Square mode is used
+
 version 1.0.5
 + Admin: Metadata Display Mode extended to allow exclusion of Catalog Description from the Thumb content
 - Fixed issue with some js variables not being initialized when big thumb mode is used
