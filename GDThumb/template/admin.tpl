@@ -1,5 +1,5 @@
 <div class="titrePage">
-<h2>GDThumb - 1.0.6</h2>
+<h2>GDThumb - 1.0.7</h2>
 </div>
 <form action="" method="post">
 
@@ -92,7 +92,7 @@
 </div>
 </fieldset>
 
-{combine_css path="/plugins/GDThumb/template/admin.css"}
+{combine_css path="`$GDTHUMB_PATH`template/admin.css"}
 
 {if $CUSTOM_CSS=="yes"}
 {combine_css path="/themes/greydragon/admin/css/styles.css" version=1}

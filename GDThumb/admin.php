@@ -148,6 +148,7 @@ endif;
 // Configuration du template
 $template->assign(
   array(
+    'GDTHUMB_PATH'     => GDTHUMB_PATH,
     'HEIGHT'           => $params['height'],
     'MARGIN'           => $params['margin'],
     'NB_IMAGE_PAGE'    => $params['nb_image_page'],

@@ -27,6 +27,9 @@ details. You should have received a copy of the GNU General Public License along
 51 Franklin Street Fifth Floor, Boston, MA  02110-1301, USA.
 
 === Changelog ===
+version 1.0.7
+- Plugin maintenance code converted to use PluginMaintain class (Piwigo 2.6). This addresses some inconsistencies in DB operations handling.
+
 version 1.0.6
 - Fixed issue where size of the first thumb was not initialized when "Big Thumb" in Square mode is used
 

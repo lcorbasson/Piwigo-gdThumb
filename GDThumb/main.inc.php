@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: gdThumb
-Version: 1.0.6
+Version: 1.0.7
 Description: Display thumbnails as patchwork
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=771
 Author: Serge Dosyukov 

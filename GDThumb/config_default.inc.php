@@ -10,7 +10,7 @@ $config_default = array(
   'method'           => 'crop',
   'thumb_mode_album' => 'bottom',
   'thumb_mode_photo' => 'bottom',
-  'thumb_metamode'   => 'merge',
+  'thumb_metamode'   => 'merged',
 );
 
 ?>
