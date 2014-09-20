@@ -1,5 +1,5 @@
-<div class="loader"><img src="{$ROOT_URL}{$themeconf.img_dir}/ajax_loader.gif"></div>
-<ul class="thumbnailCategories thumbnails">
+<div class="loader"><img src="{$ROOT_URL}{$themeconf.img_dir}/ajax_loader.gif" alt=""></div>
+<ul class="thumbnailCategories thumbnails {if $GDThumb.no_wordwrap}nowrap{/if}">
 
 {if !empty($category_thumbnails)}
 {assign var=has_cats value="true" scope=root nocache}
@@ -22,7 +22,7 @@
         {if isset($cat.INFO_DATES) }
         <span class="dates">{$cat.INFO_DATES}</span>
         {/if}
-        <span class="Nb_images">{$cat.CAPTION_NB_IMAGES}</span>
+        <span class="Nb_images">{if $GDThumb.no_wordwrap}{$cat.CAPTION_NB_IMAGES|regex_replace:"[<br>|</br>]":" "}{else}{$cat.CAPTION_NB_IMAGES}{/if}</span>
         {if $GDThumb.thumb_metamode == "merged_desc"}
         {if not empty($cat.DESCRIPTION)}
         <span class="description">{$cat.DESCRIPTION}</span>
@@ -47,7 +47,7 @@
 .thumbnailCategories .gdthumb {ldelim} margin:0 0 {$GDThumb.margin}px {$GDThumb.margin}px !important; }
 {/html_style}{/strip}
 
-{combine_css path="plugins/GDThumb/template/gdthumb.css" version=1}
+{combine_css path="plugins/GDThumb/css/gdthumb.css" version=1}
 {combine_script id='jquery.ajaxmanager' path='themes/default/js/plugins/jquery.ajaxmanager.js' load='footer'}
 {combine_script id='thumbnails.loader' path='themes/default/js/thumbnails.loader.js' require='jquery.ajaxmanager' load='footer'}
 {combine_script id='jquery.ba-resize' path='plugins/GDThumb/js/jquery.ba-resize.min.js' load="footer"}

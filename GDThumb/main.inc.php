@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: gdThumb
-Version: 1.0.7
+Version: 1.0.8
 Description: Display thumbnails as patchwork
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=771
 Author: Serge Dosyukov 
@@ -30,10 +30,10 @@ endif;
 $conf['gdThumb'] = unserialize($conf['gdThumb']);
 
 // RV Thumbnails Scroller
-if (isset($_GET['rvts'])) {
+if (isset($_GET['rvts'])):
   $conf['gdThumb']['big_thumb'] = false;
   add_event_handler('loc_end_index_thumbnails', 'process_GDThumb', 50, 2);
-}
+endif;
 
 add_event_handler('init', 'GDThumb_init');
 add_event_handler('loc_begin_index', 'GDThumb_index', 60);
@@ -48,9 +48,6 @@ function GDThumb_init() {
   $user['nb_image_page']    = $confTemp['nb_image_page'];
   $page['nb_image_page']    = $confTemp['nb_image_page'];
   $stripped['maxThumb']     = $confTemp['nb_image_page'];
-  $conf['thumb_mode_album'] = $confTemp['thumb_mode_album'];
-  $conf['thumb_mode_photo'] = $confTemp['thumb_mode_photo'];
-  $conf['thumb_metamode']   = $confTemp['thumb_metamode'];
 }
 
 function GDThumb_index() {
@@ -64,16 +61,17 @@ function GDThumb_index() {
 function GDThumb_process_thumb($tpl_vars, $pictures) {
   global $template, $conf;
   $confTemp = $conf['gdThumb'];
+  $confTemp['GDTHUMB_PATH'] = realpath(GDTHUMB_PATH);
 
-  $template->set_filename( 'index_thumbnails', realpath(GDTHUMB_PATH.'template/gdthumb_thumb.tpl'));
+  $template->set_filename( 'index_thumbnails', realpath(GDTHUMB_PATH . 'template/gdthumb_thumb.tpl'));
   $template->assign('GDThumb', $confTemp);
 
   $template->assign('GDThumb_derivative_params', ImageStdParams::get_custom(9999, $confTemp['height']));
 
-  if ($confTemp['big_thumb'] and !empty($tpl_vars[0])) {
+  if ($confTemp['big_thumb'] and !empty($tpl_vars[0])):
     $derivative_params = ImageStdParams::get_custom(9999, 2 * $confTemp['height'] + $confTemp['margin']);
     $template->assign('GDThumb_big', new DerivativeImage($derivative_params, $tpl_vars[0]['src_image']));
-  }
+  endif;
 
   return $tpl_vars;
 }
@@ -82,8 +80,9 @@ function GDThumb_process_category($tpl_vars) {
 
   global $template, $conf;
   $confTemp = $conf['gdThumb'];
+  $confTemp['GDTHUMB_PATH'] = GDTHUMB_PATH;
 
-  $template->set_filename( 'index_category_thumbnails', realpath(GDTHUMB_PATH.'template/gdthumb_cat.tpl'));
+  $template->set_filename( 'index_category_thumbnails', realpath(GDTHUMB_PATH . 'template/gdthumb_cat.tpl'));
   $template->assign('GDThumb', $confTemp);
   $template->assign('GDThumb_derivative_params', ImageStdParams::get_custom(9999, $confTemp['height']));
 

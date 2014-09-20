@@ -239,15 +239,15 @@ var GDThumb = {
       new_width = new_height;
 
       if (width < height) {
-        real_width = new_width;
         real_height = Math.round(height * new_width / width);
+        real_width  = new_width;
       } else {
         real_height = new_width;
-        real_width = Math.round(width * new_height / height);
+        real_width  = Math.round(width * new_height / height);
       }
 
-      height_crop = Math.round((real_height - new_height)/2);
-      width_crop = Math.round((real_width - new_height)/2);
+      height_crop = Math.round((real_height - new_height) / 2);
+      width_crop = Math.round((real_width - new_height) / 2);
       thumb.css({
         height: real_height+'px',
         width: real_width+'px'

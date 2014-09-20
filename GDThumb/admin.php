@@ -31,11 +31,7 @@ if (isset($_GET['getMissingDerivative'])) {
 
   $qlimit = min(5000, ceil(max($image_count/500, $max_urls)));
 
-  $query_model = 'SELECT *
-  FROM '.IMAGES_TABLE.'
-  WHERE id < start_id
-  ORDER BY id DESC
-  LIMIT '.$qlimit;
+  $query_model = 'SELECT * FROM ' . IMAGES_TABLE . ' WHERE id < start_id ORDER BY id DESC LIMIT ' . $qlimit;
 
   $urls=array();
   do {
@@ -101,7 +97,8 @@ if (isset($_POST['submit'])) {
     'method'          => $method,
     'thumb_mode_album'=> $_POST['thumb_mode_album'],
     'thumb_mode_photo'=> $_POST['thumb_mode_photo'],
-    'thumb_metamode'  => $_POST['thumb_metamode']
+    'thumb_metamode'  => $_POST['thumb_metamode'],
+    'no_wordwrap'     => !empty($_POST['no_wordwrap'])
   );
 
   if (!is_numeric($params['height'])) {
@@ -149,6 +146,8 @@ endif;
 $template->assign(
   array(
     'GDTHUMB_PATH'     => GDTHUMB_PATH,
+    'GDTHUMB_VERSION'  => '1.0.8',
+    'PHPWG_ROOT_PATH'  => PHPWG_ROOT_PATH,
     'HEIGHT'           => $params['height'],
     'MARGIN'           => $params['margin'],
     'NB_IMAGE_PAGE'    => $params['nb_image_page'],
@@ -159,6 +158,7 @@ $template->assign(
     'THUMB_MODE_ALBUM' => $params['thumb_mode_album'],
     'THUMB_MODE_PHOTO' => $params['thumb_mode_photo'],
     'THUMB_METAMODE'   => $params['thumb_metamode'],
+    'NO_WORDWRAP'      => $params['no_wordwrap'],
     'PWG_TOKEN'        => get_pwg_token(),
     'CUSTOM_CSS'       => $custom_css
   )

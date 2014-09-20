@@ -42,7 +42,7 @@
 </li>
 {/foreach}
 
-{combine_css path="plugins/GDThumb/template/gdthumb.css" version=1}
+{combine_css path="plugins/GDThumb/css/gdthumb.css" version=1}
 {combine_script id='jquery.ajaxmanager' path='themes/default/js/plugins/jquery.ajaxmanager.js' load='footer'}
 {combine_script id='thumbnails.loader' path='themes/default/js/thumbnails.loader.js' require='jquery.ajaxmanager' load='footer'}
 {combine_script id='jquery.ba-resize' path='plugins/GDThumb/js/jquery.ba-resize.min.js' load="footer"}

@@ -1,5 +1,5 @@
 <div class="titrePage">
-<h2>GDThumb - 1.0.7</h2>
+<h2>GDThumb - {$GDTHUMB_VERSION}</h2>
 </div>
 <form action="" method="post">
 
@@ -20,7 +20,7 @@
     <li><label><span class="graphicalCheckbox {if $BIG_THUMB}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="big_thumb" id="big_thumb" type="checkbox" value="1" {if $BIG_THUMB}checked="checked"{/if}>{'Double the size of the first thumbnail'|@translate}</label></li>
     <li><label><span class="graphicalCheckbox {if $CACHE_BIG_THUMB}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="cache_big_thumb" id="cache_big_thumb" type="checkbox" value="1" {if $CACHE_BIG_THUMB}checked="checked"{/if}>{'Cache the big thumbnails (recommended)'|@translate}</label></li>
     <li><label><span class="graphicalCheckbox {if $NORMALIZE_TITLE}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="normalize_title" id="normalize_title" type="checkbox" value="1" {if $NORMALIZE_TITLE}checked="checked"{/if}>{'Normalize Photo Title'|@translate}</label></li>
-
+    <li><label><span class="graphicalCheckbox {if $NO_WORDWRAP}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="no_wordwrap" id="no_wordwrap" type="checkbox" value="1" {if $NO_WORDWRAP}checked="checked"{/if}>{'Prevent word wrap'|@translate}</label></li>
     <li>
       <select id="method" name="method" >
         <option {if $METHOD == 'crop'}selected="selected"{/if} value="crop">{'Crop (Default)'|@translate}</option>
@@ -92,10 +92,10 @@
 </div>
 </fieldset>
 
-{combine_css path="`$GDTHUMB_PATH`template/admin.css"}
+{combine_css path="`$GDTHUMB_PATH`css/admin.css"}
 
 {if $CUSTOM_CSS=="yes"}
-{combine_css path="/themes/greydragon/admin/css/styles.css" version=1}
+{combine_css path="`$PHPWG_ROOT_PATH`themes/greydragon/admin/css/styles.css" version=1}
 {footer_script require='jquery.ui.button'}{literal}
 $().ready(function(){
   $( ".radio" ).buttonset();
@@ -111,5 +111,5 @@ $().ready(function(){
 </style>
 {/literal}{/html_head}
 {/if}
-{combine_script id='iloader' load='footer' path='plugins/GDThumb/js/image.loader.js'}
-{combine_script id='admin.precache' load='footer' path='plugins/GDThumb/js/gdthumb.admin.js' require='jquery.ui.effect-slide' version=2}
+{combine_script id='iloader' load='footer' path='`$GDTHUMB_PATH`js/image.loader.js'}
+{combine_script id='admin.precache' load='footer' path='`$GDTHUMB_PATH`js/gdthumb.admin.js' require='jquery.ui.effect-slide' version=2}

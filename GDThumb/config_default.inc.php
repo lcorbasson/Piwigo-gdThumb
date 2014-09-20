@@ -11,6 +11,7 @@ $config_default = array(
   'thumb_mode_album' => 'bottom',
   'thumb_mode_photo' => 'bottom',
   'thumb_metamode'   => 'merged',
+  'no_wordwrap'      => false
 );
 
 ?>
