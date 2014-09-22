@@ -12,12 +12,10 @@ Plugin was inspired by GThumb+ but adds new options:
  * Title Display Mode: Overlay Top/Overlay Top (Static)/Overlay Bottom/Overlay Bottom (Static)/Hide 
  * Meta Data Display Mode
 
-Tags: 
-
 http://blog.dragonsoft.us/
 Copyright (C) 2009-2014 Serguei Dosyukov
 
-Tested up to: PW 2.6.3
+Compatible: PW 2.6, 2.7
 Minimum requirement: PW 2.6.3
 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software
@@ -27,6 +25,11 @@ details. You should have received a copy of the GNU General Public License along
 51 Franklin Street Fifth Floor, Boston, MA  02110-1301, USA.
 
 === Changelog ===
+version 1.0.9
++ Piwigo 2.7 compatible
+- Fixed issue when some plugin settings are not initialized properly on version update
+- Fixed issue when under some conditions reference urls for JS/CSS are not constructed properly in admin area
+
 version 1.0.8
 + ADMIN: New option: Prevent word wrap
 + CSS: add ellipse when text overflows (triggered when No word wrap is enabled)

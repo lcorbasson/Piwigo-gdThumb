@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: gdThumb
-Version: 1.0.8
+Version: 1.0.9
 Description: Display thumbnails as patchwork
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=771
 Author: Serge Dosyukov 
@@ -15,7 +15,12 @@ if (!defined('PHPWG_ROOT_PATH')) die('Hacking attempt!');
 
 if (mobile_theme()) return;
 
-define('GDTHUMB_PATH' , PHPWG_PLUGINS_PATH . basename(dirname(__FILE__)) . '/');
+// +-----------------------------------------------------------------------+
+// | Plugin constants                                               |
+// +-----------------------------------------------------------------------+
+define('GDTHUMB_PATH' , get_absolute_root_url(FALSE) . PHPWG_PLUGINS_PATH . basename(dirname(__FILE__)) . '/');
+define('GDTHEME_PATH' , str_replace("/./", "/", get_absolute_root_url(FALSE) . PHPWG_THEMES_PATH . 'greydragon/'));
+define('GDTHUMB_VERSION', '1.0.9');
 
 if (!isset($conf['gdThumb'])):
   include(dirname(__FILE__).'/config_default.inc.php');
@@ -63,7 +68,9 @@ function GDThumb_process_thumb($tpl_vars, $pictures) {
   $confTemp = $conf['gdThumb'];
   $confTemp['GDTHUMB_PATH'] = realpath(GDTHUMB_PATH);
 
-  $template->set_filename( 'index_thumbnails', realpath(GDTHUMB_PATH . 'template/gdthumb_thumb.tpl'));
+  echo realpath(GDTHUMB_PATH . 'template/gdthumb_thumb.tpl');
+
+  $template->set_filename( 'index_thumbnails', dirname(__FILE__) . '/template/gdthumb_thumb.tpl');
   $template->assign('GDThumb', $confTemp);
 
   $template->assign('GDThumb_derivative_params', ImageStdParams::get_custom(9999, $confTemp['height']));
@@ -82,7 +89,7 @@ function GDThumb_process_category($tpl_vars) {
   $confTemp = $conf['gdThumb'];
   $confTemp['GDTHUMB_PATH'] = GDTHUMB_PATH;
 
-  $template->set_filename( 'index_category_thumbnails', realpath(GDTHUMB_PATH . 'template/gdthumb_cat.tpl'));
+  $template->set_filename( 'index_category_thumbnails', dirname(__FILE__) . '/template/gdthumb_cat.tpl');
   $template->assign('GDThumb', $confTemp);
   $template->assign('GDThumb_derivative_params', ImageStdParams::get_custom(9999, $confTemp['height']));
 

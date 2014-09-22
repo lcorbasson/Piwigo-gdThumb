@@ -131,7 +131,7 @@ if (isset($_POST['submit'])) {
 }
 
 // Try to find GreyDragon Theme and use Theme's styles for admin area
-$css_file = dirname(dirname(dirname(__FILE__))) . "/themes/greydragon/admin/css/styles.css";
+$css_file = dirname(dirname(dirname(__FILE__))) . GDTHEME_PATH . "admin/css/styles.css";
 if (file_exists($css_file)):
   $custom_css = "yes";
 else:
@@ -146,7 +146,8 @@ endif;
 $template->assign(
   array(
     'GDTHUMB_PATH'     => GDTHUMB_PATH,
-    'GDTHUMB_VERSION'  => '1.0.8',
+    'GDTHEME_PATH'     => GDTHEME_PATH,
+    'GDTHUMB_VERSION'  => GDTHUMB_VERSION,
     'PHPWG_ROOT_PATH'  => PHPWG_ROOT_PATH,
     'HEIGHT'           => $params['height'],
     'MARGIN'           => $params['margin'],
@@ -158,7 +159,7 @@ $template->assign(
     'THUMB_MODE_ALBUM' => $params['thumb_mode_album'],
     'THUMB_MODE_PHOTO' => $params['thumb_mode_photo'],
     'THUMB_METAMODE'   => $params['thumb_metamode'],
-    'NO_WORDWRAP'      => $params['no_wordwrap'],
+    'NO_WORDWRAP'      => isset($params['no_wordwrap']),
     'PWG_TOKEN'        => get_pwg_token(),
     'CUSTOM_CSS'       => $custom_css
   )

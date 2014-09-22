@@ -95,7 +95,7 @@
 {combine_css path="`$GDTHUMB_PATH`css/admin.css"}
 
 {if $CUSTOM_CSS=="yes"}
-{combine_css path="`$PHPWG_ROOT_PATH`themes/greydragon/admin/css/styles.css" version=1}
+{combine_css path="`$GDTHEME_PATH`admin/css/styles.css" version=1}
 {footer_script require='jquery.ui.button'}{literal}
 $().ready(function(){
   $( ".radio" ).buttonset();
@@ -111,5 +111,6 @@ $().ready(function(){
 </style>
 {/literal}{/html_head}
 {/if}
-{combine_script id='iloader' load='footer' path='`$GDTHUMB_PATH`js/image.loader.js'}
-{combine_script id='admin.precache' load='footer' path='`$GDTHUMB_PATH`js/gdthumb.admin.js' require='jquery.ui.effect-slide' version=2}
+
+{combine_script id='iloader' load='footer' path="`$GDTHUMB_PATH`js/image.loader.js"}
+{combine_script id='admin.precache' load='footer' path="`$GDTHUMB_PATH`js/gdthumb.admin.js" require='jquery.ui.effect-slide' version=2}
