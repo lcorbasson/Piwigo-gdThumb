@@ -4,18 +4,21 @@ var GDThumb = {
   margin: 10,
   max_first_thumb_width: 0.7,
   big_thumb: null,
+  big_thumb_block: false,
+  check_pv: false,
   small_thumb: null,
   method: 'crop',
   t: new Array,
 
   // Initialize plugin logic, perform necessary steps
-  setup: function(method, max_height, margin, do_merge, big_thumb) {
+  setup: function(method, max_height, margin, do_merge, big_thumb, check_pv) {
 
     jQuery('ul#thumbnails').addClass("thumbnails");
 
     GDThumb.max_height = max_height;
     GDThumb.margin     = margin;
     GDThumb.method     = method;
+    GDThumb.check_pv   = check_pv;
 
     if (do_merge) { GDThumb.merge(); }
 
@@ -67,9 +70,17 @@ var GDThumb = {
         th.width = Math.round(GDThumb.max_height * width / height);
         th.height = GDThumb.max_height;
       }
+      if (GDThumb.check_pv) {
+        var ratio = th.width / th.height;
+        GDThumb.big_thumb_block = (ratio > 2.2) || (ratio < 0.455);
+      }
 
       GDThumb.t.push(th);
     });
+
+    if (GDThumb.big_thumb_block) {
+      GDThumb.big_thumb = null;
+    }
 
     first = GDThumb.t[0];
     if (first) {

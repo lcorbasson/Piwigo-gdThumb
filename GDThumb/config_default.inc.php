@@ -5,6 +5,7 @@ $config_default = array(
   'margin'           => 10,
   'nb_image_page'    => 80,
   'big_thumb'        => true,
+  'big_thumb_noinpw' => false,
   'cache_big_thumb'  => true,
   'normalize_title'  => false,
   'method'           => 'crop',

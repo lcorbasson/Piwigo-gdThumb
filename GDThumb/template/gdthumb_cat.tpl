@@ -47,11 +47,11 @@
 .thumbnailCategories .gdthumb {ldelim} margin:0 0 {$GDThumb.margin}px {$GDThumb.margin}px !important; }
 {/html_style}{/strip}
 
-{combine_css path="plugins/GDThumb/css/gdthumb.css" version=1}
+{combine_css path=$GDThumb.GDTHUMB_ROOT|cat:"/css/gdthumb.css"}
 {combine_script id='jquery.ajaxmanager' path='themes/default/js/plugins/jquery.ajaxmanager.js' load='footer'}
 {combine_script id='thumbnails.loader' path='themes/default/js/thumbnails.loader.js' require='jquery.ajaxmanager' load='footer'}
-{combine_script id='jquery.ba-resize' path='plugins/GDThumb/js/jquery.ba-resize.min.js' load="footer"}
-{combine_script id='gdthumb' require='jquery,jquery.ba-resize' path='plugins/GDThumb/js/gdthumb.js' load="footer"}
+{combine_script id='jquery.ba-resize' path=$GDThumb.GDTHUMB_ROOT|cat:"/js/jquery.ba-resize.min.js" load="footer"}
+{combine_script id='gdthumb' require='jquery,jquery.ba-resize' path=$GDThumb.GDTHUMB_ROOT|cat:"/js/gdthumb.js" load="footer"}
 
 {footer_script require="gdthumb"}
 $(function() {
@@ -61,6 +61,6 @@ $(function() {
   {else}
   var big_thumb = null;
   {/if}
-  GDThumb.setup('{$GDThumb.method}', {$GDThumb.height}, {$GDThumb.margin}, true, big_thumb);
+  GDThumb.setup('{$GDThumb.method}', {$GDThumb.height}, {$GDThumb.margin}, true, big_thumb, {$GDThumb.big_thumb_noinpw});
 });
 {/footer_script}

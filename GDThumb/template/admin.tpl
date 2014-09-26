@@ -9,7 +9,7 @@
     <li>
       <select id="direction" name="direction" disabled>
         <option {if $DIRECTION == 'horizontal'}selected="selected"{/if} value="horizontal">{'Horizontal (Default)'|@translate}</option>
-        <!-- <option {if $DIRECTION == 'vertical'}selected="selected"{/if} value="vertical">{'Vertical'|@translate}</option> -->
+        {* <option {if $DIRECTION == 'vertical'}selected="selected"{/if} value="vertical">{'Vertical'|@translate}</option> *}
       </select>
       <label for="direction">{'Masonry Type'|@translate}</label>
     </li>
@@ -18,6 +18,7 @@
     <li><input id="nb_image_page" type="text" size="2" maxlength="3" name="nb_image_page" value="{$NB_IMAGE_PAGE}"><label for="nb_image_page">{'Number of photos per page'|@translate}</label></li>
 
     <li><label><span class="graphicalCheckbox {if $BIG_THUMB}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="big_thumb" id="big_thumb" type="checkbox" value="1" {if $BIG_THUMB}checked="checked"{/if}>{'Double the size of the first thumbnail'|@translate}</label></li>
+    <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><span class="graphicalCheckbox {if $BIG_THUMB_NOINPW}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="big_thumb_noinpw" id="big_thumb_noinpw" type="checkbox" value="1" {if $BIG_THUMB_NOINPW}checked="checked"{/if}>{'Block for Panoramic Photo Page'|@translate} (x2.2+)</label></li>
     <li><label><span class="graphicalCheckbox {if $CACHE_BIG_THUMB}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="cache_big_thumb" id="cache_big_thumb" type="checkbox" value="1" {if $CACHE_BIG_THUMB}checked="checked"{/if}>{'Cache the big thumbnails (recommended)'|@translate}</label></li>
     <li><label><span class="graphicalCheckbox {if $NORMALIZE_TITLE}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="normalize_title" id="normalize_title" type="checkbox" value="1" {if $NORMALIZE_TITLE}checked="checked"{/if}>{'Normalize Photo Title'|@translate}</label></li>
     <li><label><span class="graphicalCheckbox {if $NO_WORDWRAP}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="no_wordwrap" id="no_wordwrap" type="checkbox" value="1" {if $NO_WORDWRAP}checked="checked"{/if}>{'Prevent word wrap'|@translate}</label></li>
@@ -92,10 +93,10 @@
 </div>
 </fieldset>
 
-{combine_css path="`$GDTHUMB_PATH`css/admin.css"}
+{combine_css path=$GDTHUMB_PATH|cat:"/css/admin.css"}
 
 {if $CUSTOM_CSS=="yes"}
-{combine_css path="`$GDTHEME_PATH`admin/css/styles.css" version=1}
+  {combine_css path=$GDTHEME_PATH|cat:"admin/css/styles.css"}
 {footer_script require='jquery.ui.button'}{literal}
 $().ready(function(){
   $( ".radio" ).buttonset();
@@ -112,5 +113,5 @@ $().ready(function(){
 {/literal}{/html_head}
 {/if}
 
-{combine_script id='iloader' load='footer' path="`$GDTHUMB_PATH`js/image.loader.js"}
-{combine_script id='admin.precache' load='footer' path="`$GDTHUMB_PATH`js/gdthumb.admin.js" require='jquery.ui.effect-slide' version=2}
+{combine_script id='iloader' load='footer' path=$GDTHUMB_PATH|cat:"/js/image.loader.js"}
+{combine_script id='admin.precache' load='footer' path=$GDTHUMB_PATH|cat:"/js/gdthumb.admin.js" require='jquery.ui.effect-slide'}

@@ -92,6 +92,7 @@ if (isset($_POST['submit'])) {
     'margin'          => $_POST['margin'],
     'nb_image_page'   => $_POST['nb_image_page'],
     'big_thumb'       => $big_thumb,
+    'big_thumb_noinpw'=> !empty($_POST['big_thumb_noinpw']),
     'cache_big_thumb' => !empty($_POST['cache_big_thumb']),
     'normalize_title' => !empty($_POST['normalize_title']),
     'method'          => $method,
@@ -131,8 +132,8 @@ if (isset($_POST['submit'])) {
 }
 
 // Try to find GreyDragon Theme and use Theme's styles for admin area
-$css_file = dirname(dirname(dirname(__FILE__))) . GDTHEME_PATH . "admin/css/styles.css";
-if (file_exists($css_file)):
+$css_file = str_replace('/./', '/', dirname(dirname(dirname(__FILE__))) . '/' . GDTHEME_PATH . "admin/css/styles.css");
+if (@file_exists($css_file)):
   $custom_css = "yes";
 else:
   $custom_css = "no";
@@ -145,7 +146,7 @@ endif;
 // Configuration du template
 $template->assign(
   array(
-    'GDTHUMB_PATH'     => GDTHUMB_PATH,
+    'GDTHUMB_PATH'     => 'plugins/' . GDTHUMB_ID,
     'GDTHEME_PATH'     => GDTHEME_PATH,
     'GDTHUMB_VERSION'  => GDTHUMB_VERSION,
     'PHPWG_ROOT_PATH'  => PHPWG_ROOT_PATH,
@@ -153,13 +154,14 @@ $template->assign(
     'MARGIN'           => $params['margin'],
     'NB_IMAGE_PAGE'    => $params['nb_image_page'],
     'BIG_THUMB'        => $params['big_thumb'],
+    'BIG_THUMB_NOINPW' => isset($params['big_thumb_noinpw']) && $params['big_thumb_noinpw'],
     'CACHE_BIG_THUMB'  => $params['cache_big_thumb'],
     'NORMALIZE_TITLE'  => $params['normalize_title'],
     'METHOD'           => $params['method'],
     'THUMB_MODE_ALBUM' => $params['thumb_mode_album'],
     'THUMB_MODE_PHOTO' => $params['thumb_mode_photo'],
     'THUMB_METAMODE'   => $params['thumb_metamode'],
-    'NO_WORDWRAP'      => isset($params['no_wordwrap']),
+    'NO_WORDWRAP'      => isset($params['no_wordwrap']) && $params['no_wordwrap'],
     'PWG_TOKEN'        => get_pwg_token(),
     'CUSTOM_CSS'       => $custom_css
   )
