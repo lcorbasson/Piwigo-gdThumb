@@ -62,6 +62,10 @@ var GDThumb = {
       width = parseInt(jQuery(this).attr('width'));
       height = parseInt(jQuery(this).attr('height'));
       th = {index: index, width: width, height: height, real_width: width, real_height: height};
+      if (GDThumb.check_pv) {
+        var ratio = th.width / th.height;
+        GDThumb.big_thumb_block = (ratio > 2.2) || (ratio < 0.455);
+      }
       if ((GDThumb.method == 'square') && (th.height != th.width)) {
         th.height = GDThumb.max_height;
         th.width  = GDThumb.max_height;
@@ -69,10 +73,6 @@ var GDThumb = {
       } else if (height < GDThumb.max_height) {
         th.width = Math.round(GDThumb.max_height * width / height);
         th.height = GDThumb.max_height;
-      }
-      if (GDThumb.check_pv) {
-        var ratio = th.width / th.height;
-        GDThumb.big_thumb_block = (ratio > 2.2) || (ratio < 0.455);
       }
 
       GDThumb.t.push(th);

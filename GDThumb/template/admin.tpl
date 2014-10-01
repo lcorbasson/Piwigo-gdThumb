@@ -97,12 +97,7 @@
 
 {if $CUSTOM_CSS=="yes"}
   {combine_css path=$GDTHEME_PATH|cat:"admin/css/styles.css"}
-{footer_script require='jquery.ui.button'}{literal}
-$().ready(function(){
-  $( ".radio" ).buttonset();
-  $('form li label input[type=checkbox]').change(function() { $(this).prev().toggleClass('icon-check icon-check-empty'); });
-});
-{/literal}{/footer_script}
+  {combine_script id='greydragon.admin' load='footer' require='jquery,jquery.ui.button.js' path=$GDTHEME_PATH|cat:"admin/js/admin.js" }
 {else}
 {html_head}{literal}
 <style type="text/css">

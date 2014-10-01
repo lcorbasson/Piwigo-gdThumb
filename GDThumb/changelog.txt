@@ -25,6 +25,10 @@ details. You should have received a copy of the GNU General Public License along
 51 Franklin Street Fifth Floor, Boston, MA  02110-1301, USA.
 
 === Changelog ===
+version 1.0.11
++ ADMIN: Optimized use of GreyDragon Theme to remove code duplication
+- Fixed issue with state of "Block for Panoramic Photo Page" not recognized properly
+
 version 1.0.10
 + ADMIN: new sub option "Block for Panoramic Photo Page" for "Double the size of the first thumbnail"
 - Fixed z-index for overlay to prevent improper overlay with other theme components (ex: drop down menu)
