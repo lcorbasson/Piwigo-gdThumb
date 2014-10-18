@@ -21,18 +21,26 @@
       <img title="{$thumbnail.icon_ts.TITLE}" src="{$ROOT_URL}{$themeconf.icon_dir}/recent.png" alt="(!)">
       {/if}
     </span>
-    {if $GDThumb.thumb_metamode !== "hide"}
-    {if isset($thumbnail.NB_COMMENTS)}
-    <span class="{if 0==$thumbnail.NB_COMMENTS}zero {/if}nb-comments">
-      {$pwg->l10n_dec('%d comment', '%d comments',$thumbnail.NB_COMMENTS)}
-    </span>
-    {/if}
-    {if isset($thumbnail.NB_COMMENTS) && isset($thumbnail.NB_HITS)} - {/if}
-    {if isset($thumbnail.NB_HITS)}
-    <span class="{if 0==$thumbnail.NB_HITS}zero {/if}nb-hits">
-      {$pwg->l10n_dec('%d hit', '%d hits',$thumbnail.NB_HITS)}
-    </span>
-    {/if}
+    {if $GDThumb.thumb_mode_album == "overlay-ex"}
+      <span class="thumbInfo">
+        <span class="hit-num">{$thumbnail.hit}</span>
+        <span class="glyphicon glyphicon-picture"></span>
+        {if $thumbnail.rating_score > 0}
+        <span class="rank-num glyphicon glyphicon-star">{$thumbnail.rating_score|string_format:"%d"}</span>
+        {/if}
+      </span>
+    {elseif $GDThumb.thumb_metamode !== "hide"}
+      {if isset($thumbnail.NB_COMMENTS)}
+      <span class="{if 0==$thumbnail.NB_COMMENTS}zero {/if}nb-comments">
+        {$pwg->l10n_dec('%d comment', '%d comments',$thumbnail.NB_COMMENTS)}
+      </span>
+      {/if}
+      {if isset($thumbnail.NB_COMMENTS) && isset($thumbnail.NB_HITS)} - {/if}
+      {if isset($thumbnail.NB_HITS)}
+      <span class="{if 0==$thumbnail.NB_HITS}zero {/if}nb-hits">
+        {$pwg->l10n_dec('%d hit', '%d hits',$thumbnail.NB_HITS)}
+      </span>
+      {/if}
     {/if}
   </span>
   {/if}
@@ -65,7 +73,7 @@ $(function() {
 {/footer_script}
 
 {html_head}
-<style type="text/css">#thumbnails .gdthumb {ldelim} margin:0 0 {$GDThumb.margin}px {$GDThumb.margin}px !important; }</style>
+<style type="text/css">#thumbnails .gdthumb {ldelim} margin:{$GDThumb.margin / 2}px {$GDThumb.margin / 2}px {$GDThumb.margin - $GDThumb.margin / 2}px {$GDThumb.margin - $GDThumb.margin / 2}px !important; }</style>
 <!--[if IE 8]>
 <style type="text/css">#thumbnails .gdthumb a {ldelim} right: 0px; }</style>
 <![endif]-->

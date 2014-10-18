@@ -12,20 +12,37 @@ ul.thumbnails .thumbLegend .thumbName span { display:block; overflow: hidden; te
 ul.thumbnails .thumbLegend .thumbTitle { font-weight:bold; color:#eee; }
 .thumbnailCategories li { width: auto; }
 
+/* Top overlay */
 ul.thumbnails .gdthumb .thumbLegend.top           { bottom:auto; top:-6em; -webkit-transition:all 200ms ease-out; -moz-transition:all 200ms ease-out; -ms-transition:all 200ms ease-out; -o-transition:all 200ms ease-out; transition:all 200ms ease-out; }
 ul.thumbnails .gdthumb:hover .thumbLegend.top     { top:0px; }
 
+/* Top Static overlay */
 ul.thumbnails .gdthumb .thumbLegend.top_static    { }
 
+/* Bottom overlay */
 ul.thumbnails .gdthumb .thumbLegend.bottom        { bottom:-6em; top:auto; -webkit-transition:all 200ms ease-out; -moz-transition:all 200ms ease-out; -ms-transition:all 200ms ease-out; -o-transition:all 200ms ease-out; transition:all 200ms ease-out; }
 ul.thumbnails .gdthumb:hover .thumbLegend.bottom  { bottom:0px; }
 
+/* Bottom Static overlay */
 ul.thumbnails .gdthumb .thumbLegend.bottom_static { bottom:0; top:auto; }
 
+/* "Overlay" overlay */
 ul.thumbnails .gdthumb .thumbLegend.overlay       { visibility: hidden;  top: 0; bottom: 0; height: auto; opacity: 0; cursor: pointer; }
 ul.thumbnails .gdthumb:hover .thumbLegend.overlay { visibility: visible; opacity: 1; transition: opacity 200ms linear; -o-transition: opacity 200ms linear; -ms-transition: opacity 200ms linear; -moz-transition: opacity 200ms linear; -webkit-transition: opacity 200ms linear; }
-
 ul.thumbnails .gdthumb .thumbLegend.overlay .thumbName  { position: absolute; bottom: 0px; width: 100%; text-align: left; padding-left: 1em; padding-bottom: 0.8em; }
 ul.thumbnails .gdthumb .thumbLegend.overlay .thumbTitle { font-size: 1.2em; }
+
+/* "Overlay Ex" overlay */
+ul.thumbnails .gdthumb .thumbLegend.overlay-ex       { visibility: hidden;  top: 0; bottom: 0; height: auto; opacity: 0; cursor: pointer; padding: 0; background-color: rgba(6, 6, 6, 0.8); }
+ul.thumbnails .gdthumb:hover .thumbLegend.overlay-ex { visibility: visible; opacity: 1; transition: opacity 200ms linear; -o-transition: opacity 200ms linear; -ms-transition: opacity 200ms linear; -moz-transition: opacity 200ms linear; -webkit-transition: opacity 200ms linear; }
+ul.thumbnails .gdthumb .thumbLegend.overlay-ex .thumbName  { position: absolute; bottom: 0px; width: 100%; text-align: left; top: 0; }
+ul.thumbnails .gdthumb .thumbLegend.overlay-ex .thumbTitle { position: absolute; left: 10px; right: 10px; top: 10px;font-size: 1.2em; text-transform: uppercase; }
+ul.thumbnails .gdthumb .thumbLegend.overlay-ex .thumbInfo  { position: absolute; bottom: 10px; left: 10px; right: 10px; padding-top: 6px; border-top: 1px solid #aaa; text-align: left; }
+ul.thumbnails .gdthumb .overlay-ex.thumbLegend .thumbInfo .item-num  { background-color: #cc3333; min-width: 15px; height: 16px; display: block; color: #fff; float: left; line-height: 16px; padding: 1px; padding-top: 0px; padding-right: 4px; padding-left: 4px; margin-top: 4px; margin-right: 10px; font-size: 10px; text-align: center; }
+ul.thumbnails .gdthumb .overlay-ex.thumbLegend .thumbInfo .hit-num   { background-color: #036FE5; min-width: 15px; height: 16px; display: block; color: #fff; float: left; line-height: 16px; padding: 1px; padding-top: 0px; padding-right: 4px; padding-left: 4px; margin-top: 4px; margin-right: 10px; font-size: 10px; text-align: center; }
+ul.thumbnails .gdthumb .overlay-ex.thumbLegend .thumbInfo .rank-num  { float: right; margin-top: 2px; vertical-align: middle; height: 20px; line-height: 20px; }
+
+ul.thumbnails .gdthumb .overlay-ex.thumbLegend .thumbInfo .glyphicon-th-large { padding-top: 2px; font-size: 18px; }
+ul.thumbnails .gdthumb .overlay-ex.thumbLegend .thumbInfo .glyphicon-picture  { padding-top: 1px; font-size: 18px; }
 
 ul.thumbnails.nowrap .gdthumb .thumbLegend { white-space: nowrap; overflow: hidden; height: auto; }

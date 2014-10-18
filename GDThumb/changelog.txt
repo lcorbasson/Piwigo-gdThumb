@@ -25,6 +25,11 @@ details. You should have received a copy of the GNU General Public License along
 51 Franklin Street Fifth Floor, Boston, MA  02110-1301, USA.
 
 === Changelog ===
+version 1.0.12
++ ADMIN: New thumb mode: Overlay Ex (only available with GD theme)
++ ADMIN: Added support links
++ Added support for thumb shadow space. Custom CSS is required to add desired shadow
+
 version 1.0.11
 + ADMIN: Optimized use of GreyDragon Theme to remove code duplication
 - Fixed issue with state of "Block for Panoramic Photo Page" not recognized properly

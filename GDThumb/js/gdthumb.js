@@ -27,6 +27,7 @@ var GDThumb = {
     jQuery(window).bind('RVTS_loaded', GDThumb.build);
     jQuery('ul.thumbnails').resize(GDThumb.process);
     jQuery("ul.thumbnails .thumbLegend.overlay").click( function() { window.location.href = $(this).parent().find('a').attr('href'); });
+    jQuery("ul.thumbnails .thumbLegend.overlay-ex").click( function() { window.location.href = $(this).parent().find('a').attr('href'); });
   },
 
   // Merge categories and picture lists

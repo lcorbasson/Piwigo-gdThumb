@@ -1,8 +1,15 @@
 <div class="titrePage">
-<h2>GDThumb - {$GDTHUMB_VERSION}</h2>
+  <h2>GDThumb - {$GDTHUMB_VERSION}</h2>
+  <div class="left-links{if $CUSTOM_CSS!=="yes"} no-gd{/if}">
+    <ul><li><a href="http://blog.dragonsoft.us/piwigo/" target="_blank">{'Home'|@translate}</a>&nbsp;|&nbsp;</li>
+      <li><a href="http://piwigo.org/forum/viewtopic.php?id=24413" target="_blank">{'Support'|@translate}</a>&nbsp;|&nbsp;</li>
+      <li><a title="Follow me on Twitter" href="http://twitter.com/greydragon_th" target="_blank">{'Follow'|@translate}</a>&nbsp;|&nbsp;</li>
+      <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=9MWBSVJMWMJEU" target="_blank">{'Coffee Fund'|@translate}</a>&nbsp;|&nbsp;</li>
+      <li><a href="http://piwigo.org/ext/extension_view.php?eid=771" onclick="return false" target="_blank">{'Download'|@translate}</a></li>
+    </ul>
+  </div>
 </div>
 <form action="" method="post">
-
 <fieldset id="GDThumb">
   <legend>{'Configuration'|@translate}</legend>
   <ul>
@@ -37,6 +44,9 @@
         <option {if $THUMB_MODE_ALBUM=="bottom"}selected="selected"{/if} value="bottom">{'Overlay Bottom'|@translate}</option>
         <option {if $THUMB_MODE_ALBUM=="bottom_static"}selected="selected"{/if} value="bottom_static">{'Overlay Bottom (Static)'|@translate}</option>
         <option {if $THUMB_MODE_ALBUM=="overlay"}selected="selected"{/if} value="overlay">{'Overlay'|@translate}</option>
+        {if $CUSTOM_CSS=="yes"}
+        <option {if $THUMB_MODE_ALBUM=="overlay-ex"}selected="selected"{/if} value="overlay-ex">{'Overlay Ex'|@translate}</option>
+        {/if}
         <option {if $THUMB_MODE_ALBUM=="hide"}selected="selected"{/if} value="hide">{'Hide'|@translate}</option>
       </select>
       <label for="thumb_mode_album">{'Title Display Mode (Album)'|@translate}</label>
@@ -48,6 +58,9 @@
         <option {if $THUMB_MODE_PHOTO=="bottom"}selected="selected"{/if} value="bottom">{'Overlay Bottom'|@translate}</option>
         <option {if $THUMB_MODE_PHOTO=="bottom_static"}selected="selected"{/if} value="bottom_static">{'Overlay Bottom (Static)'|@translate}</option>
         <option {if $THUMB_MODE_PHOTO=="overlay"}selected="selected"{/if} value="overlay">{'Overlay'|@translate}</option>
+        {if $CUSTOM_CSS=="yes"}
+        <option {if $THUMB_MODE_PHOTO=="overlay-ex"}selected="selected"{/if} value="overlay-ex">{'Overlay Ex'|@translate}</option>
+        {/if}
         <option {if $THUMB_MODE_PHOTO=="hide"}selected="selected"{/if} value="hide">{'Hide'|@translate}</option>
       </select>
       <label for="thumb_mode_photo">{'Title Display Mode (Photo)'|@translate}</label>

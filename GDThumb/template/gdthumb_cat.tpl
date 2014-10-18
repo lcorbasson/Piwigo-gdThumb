@@ -18,16 +18,21 @@
         <img title="{$cat.icon_ts.TITLE}" src="{$ROOT_URL}{$themeconf.icon_dir}/recent{if $cat.icon_ts.IS_CHILD_DATE}_by_child{/if}.png" alt="(!)">
         {/if}
         </span>
-        {if $GDThumb.thumb_metamode !== "hide"}
-        {if isset($cat.INFO_DATES) }
-        <span class="dates">{$cat.INFO_DATES}</span>
-        {/if}
-        <span class="Nb_images">{if $GDThumb.no_wordwrap}{$cat.CAPTION_NB_IMAGES|regex_replace:"[<br>|</br>]":" "}{else}{$cat.CAPTION_NB_IMAGES}{/if}</span>
-        {if $GDThumb.thumb_metamode == "merged_desc"}
-        {if not empty($cat.DESCRIPTION)}
-        <span class="description">{$cat.DESCRIPTION}</span>
-        {/if}
-        {/if}
+        {if $GDThumb.thumb_mode_album == "overlay-ex"}
+          <span class="thumbInfo">
+            <span class="item-num">{$cat.count_images}</span>
+            <span class="glyphicon glyphicon-th-large grid-gallery-icon"></span>
+          </span>
+        {elseif $GDThumb.thumb_metamode !== "hide"}
+          {if isset($cat.INFO_DATES) }
+          <span class="dates">{$cat.INFO_DATES}</span>
+          {/if}
+          <span class="Nb_images">{if $GDThumb.no_wordwrap}{$cat.CAPTION_NB_IMAGES|regex_replace:"[<br>|</br>]":" "}{else}{$cat.CAPTION_NB_IMAGES}{/if}</span>
+          {if $GDThumb.thumb_metamode == "merged_desc"}
+            {if not empty($cat.DESCRIPTION)}
+            <span class="description">{$cat.DESCRIPTION}</span>
+            {/if}
+          {/if}
         {/if}
       </span>
     </span>
@@ -44,7 +49,7 @@
 </ul>
 
 {strip}{html_style}
-.thumbnailCategories .gdthumb {ldelim} margin:0 0 {$GDThumb.margin}px {$GDThumb.margin}px !important; }
+.thumbnailCategories .gdthumb {ldelim} margin: {$GDThumb.margin / 2}px {$GDThumb.margin / 2}px {$GDThumb.margin - $GDThumb.margin / 2}px {$GDThumb.margin - $GDThumb.margin / 2}px !important; }
 {/html_style}{/strip}
 
 {combine_css path=$GDThumb.GDTHUMB_ROOT|cat:"/css/gdthumb.css"}
