@@ -6,7 +6,11 @@
   {if $GDThumb.thumb_mode_photo !== "hide" }
   <span class="thumbLegend {$GDThumb.thumb_mode_photo}">
     <span class="thumbName thumbTitle">
-    {if $GDThumb.normalize_title == "on"}
+    {if $GDThumb.normalize_title == "desc" && $thumbnail.DESCRIPTION}
+      {$thumbnail.DESCRIPTION}
+    {elseif $GDThumb.normalize_title == "off"}
+      {$thumbnail.NAME}
+    {else}
       {assign var="file_title" value=$thumbnail.NAME|cat:"."}
       {assign var="file_name" value=$thumbnail.file|replace:"_":" "}
       {if $file_name|strstr:$file_title}
@@ -14,8 +18,6 @@
       {else}
       {$thumbnail.NAME}
       {/if}
-    {else}
-      {$thumbnail.NAME}
     {/if}
       {if !empty($thumbnail.icon_ts)}
       <img title="{$thumbnail.icon_ts.TITLE}" src="{$ROOT_URL}{$themeconf.icon_dir}/recent.png" alt="(!)">

@@ -85,6 +85,11 @@ if (isset($_POST['submit'])) {
   else:
     $method = $_POST['method'];
   endif;
+  if (empty($_POST['normalize_title'])):
+    $normalize = "off";
+  else:
+    $normalize = $_POST['normalize_title'];
+  endif;
 
   $big_thumb = !empty($_POST['big_thumb']);
   $params  = array(
@@ -94,7 +99,7 @@ if (isset($_POST['submit'])) {
     'big_thumb'       => $big_thumb,
     'big_thumb_noinpw'=> !empty($_POST['big_thumb_noinpw']),
     'cache_big_thumb' => !empty($_POST['cache_big_thumb']),
-    'normalize_title' => !empty($_POST['normalize_title']),
+    'normalize_title' => $normalize,
     'method'          => $method,
     'thumb_mode_album'=> $_POST['thumb_mode_album'],
     'thumb_mode_photo'=> $_POST['thumb_mode_photo'],
@@ -141,6 +146,8 @@ endif;
 
 if (!isset($params['normalize_title'])):
   $params['normalize_title'] = "off";
+elseif ($params['normalize_title'] == "1"):
+  $params['normalize_title'] = "on";
 endif;
 
 // Configuration du template

@@ -2,6 +2,9 @@
   <h2>GDThumb - {$GDTHUMB_VERSION}</h2>
   <div class="left-links{if $CUSTOM_CSS!=="yes"} no-gd{/if}">
     <ul><li><a href="http://blog.dragonsoft.us/piwigo/" target="_blank">{'Home'|@translate}</a>&nbsp;|&nbsp;</li>
+      {if $CUSTOM_CSS=="yes"}
+      <li><a class="ajax cboxElement" href="{$GDTHUMB_PATH|cat:"/changelog.php"}?version={$GDTHUMB_VERSION}">{'Changelog'|@translate}</a>&nbsp;|&nbsp;</li>
+      {/if}
       <li><a href="http://piwigo.org/forum/viewtopic.php?id=24413" target="_blank">{'Support'|@translate}</a>&nbsp;|&nbsp;</li>
       <li><a title="Follow me on Twitter" href="http://twitter.com/greydragon_th" target="_blank">{'Follow'|@translate}</a>&nbsp;|&nbsp;</li>
       <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=9MWBSVJMWMJEU" target="_blank">{'Coffee Fund'|@translate}</a>&nbsp;|&nbsp;</li>
@@ -27,7 +30,14 @@
     <li><label><span class="graphicalCheckbox {if $BIG_THUMB}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="big_thumb" id="big_thumb" type="checkbox" value="1" {if $BIG_THUMB}checked="checked"{/if}>{'Double the size of the first thumbnail'|@translate}</label></li>
     <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><span class="graphicalCheckbox {if $BIG_THUMB_NOINPW}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="big_thumb_noinpw" id="big_thumb_noinpw" type="checkbox" value="1" {if $BIG_THUMB_NOINPW}checked="checked"{/if}>{'Block for Panoramic Photo Page'|@translate} (x2.2+)</label></li>
     <li><label><span class="graphicalCheckbox {if $CACHE_BIG_THUMB}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="cache_big_thumb" id="cache_big_thumb" type="checkbox" value="1" {if $CACHE_BIG_THUMB}checked="checked"{/if}>{'Cache the big thumbnails (recommended)'|@translate}</label></li>
-    <li><label><span class="graphicalCheckbox {if $NORMALIZE_TITLE}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="normalize_title" id="normalize_title" type="checkbox" value="1" {if $NORMALIZE_TITLE}checked="checked"{/if}>{'Normalize Photo Title'|@translate}</label></li>
+    <li>
+      <select id="normalize_title" name="normalize_title" >
+        <option {if $NORMALIZE_TITLE == 'off'}selected="selected"{/if} value="off">{'Do not Normalize (Default)'|@translate}</option>
+        <option {if $NORMALIZE_TITLE == 'on'}selected="selected"{/if} value="on">{'Photo # if FileName Detected'|@translate}</option>
+        <option {if $NORMALIZE_TITLE == 'desc'}selected="selected"{/if} value="desc">{'Use Description if Set'|@translate}</option>
+      </select>
+      <label for="normalize_title">{'Normalize Photo Title'|@translate}</label>
+    </li>
     <li><label><span class="graphicalCheckbox {if $NO_WORDWRAP}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="no_wordwrap" id="no_wordwrap" type="checkbox" value="1" {if $NO_WORDWRAP}checked="checked"{/if}>{'Prevent word wrap'|@translate}</label></li>
     <li>
       <select id="method" name="method" >
@@ -109,7 +119,9 @@
 {combine_css path=$GDTHUMB_PATH|cat:"/css/admin.css"}
 
 {if $CUSTOM_CSS=="yes"}
+  {combine_css path="themes/default/js/plugins/colorbox/style2/colorbox.css"}
   {combine_css path=$GDTHEME_PATH|cat:"admin/css/styles.css"}
+  {combine_script id='jquery.colorbox' load='footer' require='jquery' path='themes/default/js/plugins/jquery.colorbox.min.js' }
   {combine_script id='greydragon.admin' load='footer' require='jquery,jquery.ui.button.js' path=$GDTHEME_PATH|cat:"admin/js/admin.js" }
 {else}
 {html_head}{literal}

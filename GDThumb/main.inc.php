@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: gdThumb
-Version: 1.0.12
+Version: 1.0.13
 Description: Display thumbnails as patchwork
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=771
 Author: Serge Dosyukov 
@@ -18,7 +18,7 @@ if (mobile_theme()) return;
 // +-----------------------------------------------------------------------+
 // | Plugin constants                                               |
 // +-----------------------------------------------------------------------+
-define('GDTHUMB_VERSION', '1.0.12');
+define('GDTHUMB_VERSION', '1.0.13');
 define('GDTHUMB_ID',      basename(dirname(__FILE__)));
 define('GDTHEME_PATH' ,   PHPWG_THEMES_PATH . 'greydragon/');
 define('GDTHUMB_PATH' ,   PHPWG_PLUGINS_PATH . GDTHUMB_ID . '/');
@@ -69,6 +69,9 @@ function GDThumb_process_thumb($tpl_vars, $pictures) {
   $confTemp = $conf['gdThumb'];
   $confTemp['GDTHUMB_ROOT'] = 'plugins/' . GDTHUMB_ID;
   $confTemp['big_thumb_noinpw'] = (isset($confTemp['big_thumb_noinpw']) && ($confTemp['big_thumb_noinpw']))? 1 : 0;
+  if ($confTemp['normalize_title'] == "1"):
+    $confTemp['normalize_title'] = "on";
+  endif;    
 
   $template->set_filename( 'index_thumbnails', dirname(__FILE__) . '/template/gdthumb_thumb.tpl');
   $template->assign('GDThumb', $confTemp);
