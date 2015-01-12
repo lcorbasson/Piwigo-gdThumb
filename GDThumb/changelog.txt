@@ -25,6 +25,10 @@ details. You should have received a copy of the GNU General Public License along
 51 Franklin Street Fifth Floor, Boston, MA  02110-1301, USA.
 
 === Changelog ===
+version 1.0.14
++ Added integration with VideoJS plugin to allow display of "film" icon in square mode
+- Fixed issue with incorrect callback when "RV Thumb Scroller" plugin is used
+
 version 1.0.13
 + ADMIN: Added ChangeLog link in toolbar
 + ADMIN: New option for Normalize Photo Title

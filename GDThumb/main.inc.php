@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: gdThumb
-Version: 1.0.13
+Version: 1.0.14
 Description: Display thumbnails as patchwork
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=771
 Author: Serge Dosyukov 
@@ -18,7 +18,7 @@ if (mobile_theme()) return;
 // +-----------------------------------------------------------------------+
 // | Plugin constants                                               |
 // +-----------------------------------------------------------------------+
-define('GDTHUMB_VERSION', '1.0.13');
+define('GDTHUMB_VERSION', '1.0.14');
 define('GDTHUMB_ID',      basename(dirname(__FILE__)));
 define('GDTHEME_PATH' ,   PHPWG_THEMES_PATH . 'greydragon/');
 define('GDTHUMB_PATH' ,   PHPWG_PLUGINS_PATH . GDTHUMB_ID . '/');
@@ -38,7 +38,7 @@ $conf['gdThumb'] = unserialize($conf['gdThumb']);
 // RV Thumbnails Scroller
 if (isset($_GET['rvts'])):
   $conf['gdThumb']['big_thumb'] = false;
-  add_event_handler('loc_end_index_thumbnails', 'process_GDThumb', 50, 2);
+  add_event_handler('loc_end_index_thumbnails', 'GDThumb_process_thumb', 50, 2);
 endif;
 
 add_event_handler('init', 'GDThumb_init');

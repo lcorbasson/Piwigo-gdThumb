@@ -44,5 +44,6 @@ ul.thumbnails .gdthumb .overlay-ex.thumbLegend .thumbInfo .rank-num  { float: ri
 
 ul.thumbnails .gdthumb .overlay-ex.thumbLegend .thumbInfo .glyphicon-th-large { padding-top: 2px; font-size: 18px; }
 ul.thumbnails .gdthumb .overlay-ex.thumbLegend .thumbInfo .glyphicon-picture  { padding-top: 1px; font-size: 18px; }
+ul.thumbnails .gdthumb .overlay-ex.thumbLegend .thumbInfo .glyphicon-film     { padding-top: 3px; font-size: 18px; }
 
 ul.thumbnails.nowrap .gdthumb .thumbLegend { white-space: nowrap; overflow: hidden; height: auto; }

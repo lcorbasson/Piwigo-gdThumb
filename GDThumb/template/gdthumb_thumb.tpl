@@ -26,7 +26,7 @@
     {if $GDThumb.thumb_mode_album == "overlay-ex"}
       <span class="thumbInfo">
         <span class="hit-num">{$thumbnail.hit}</span>
-        <span class="glyphicon glyphicon-picture"></span>
+        <span class="glyphicon {if $derivative->is_cached()}{if $derivative->get_url()|strstr:"/piwigo-videojs/"}glyphicon-film{else}glyphicon-picture{/if}{else}glyphicon-picture{/if}"></span>
         {if $thumbnail.rating_score > 0}
         <span class="rank-num glyphicon glyphicon-star">{$thumbnail.rating_score|string_format:"%d"}</span>
         {/if}
