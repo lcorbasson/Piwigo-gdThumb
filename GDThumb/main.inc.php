@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: gdThumb
-Version: 1.0.14
-Description: Display thumbnails as patchwork
+Version: 1.0.15
+Description: Apply Masonry style to album or image thumbs
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=771
 Author: Serge Dosyukov 
 Author URI: http://blog.dragonsoft.us
@@ -18,7 +18,7 @@ if (mobile_theme()) return;
 // +-----------------------------------------------------------------------+
 // | Plugin constants                                               |
 // +-----------------------------------------------------------------------+
-define('GDTHUMB_VERSION', '1.0.14');
+define('GDTHUMB_VERSION', '1.0.15');
 define('GDTHUMB_ID',      basename(dirname(__FILE__)));
 define('GDTHEME_PATH' ,   PHPWG_THEMES_PATH . 'greydragon/');
 define('GDTHUMB_PATH' ,   PHPWG_PLUGINS_PATH . GDTHUMB_ID . '/');
@@ -58,10 +58,45 @@ function GDThumb_init() {
 
 function GDThumb_index() {
   global $template;
-  
+
+  $template->smarty->registerPlugin("function", "media_type", "GDThumb_media_type");
   $template->set_prefilter('index', 'GDThumb_prefilter');
 
   add_event_handler('loc_end_index_thumbnails', 'GDThumb_process_thumb', 50, 2);
+}
+                                                 
+function GDThumb_endsWith($needles, $haystack) {
+  if(empty($needles) || empty($haystack)):
+    return false;
+  else:
+    $arr_needles = explode(',', $needles);
+    
+    foreach ((array) $arr_needles as $needle) { 
+      if ((string) $needle === substr($haystack, -strlen($needle))) return true; 
+    } 
+    return false; 
+  endif;
+}
+
+function GDThumb_media_type($params, $smarty) {
+  if(empty($params["file"]))
+    return "image";
+
+  $file = $params["file"];
+  if (GDThumb_endsWith("webm,webmv,ogv,m4v,flv,mp4", $file))
+    return "video";
+  if (GDThumb_endsWith("mp3,ogg,oga,m4a,webma,fla,wav", $file))
+    return "music";
+  if (GDThumb_endsWith("pdf", $file))
+    return "pdf";
+  if (GDThumb_endsWith("doc,docx,odt", $file))
+    return "doc";
+  if (GDThumb_endsWith("xls,xlsx,ods", $file))
+    return "xls";
+  if (GDThumb_endsWith("ppt,pptx,odp", $file))
+    return "ppt";
+
+  return "image";
 }
 
 function GDThumb_process_thumb($tpl_vars, $pictures) {

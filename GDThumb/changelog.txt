@@ -25,8 +25,13 @@ details. You should have received a copy of the GNU General Public License along
 51 Franklin Street Fifth Floor, Boston, MA  02110-1301, USA.
 
 === Changelog ===
+version 1.0.15
++ In Overlay Ex mode place "New Item" marker is placed in metadata area
++ Further and final improvement for file type markers in Overlay Ex mode. Now sensitive to file extensions. Supports image, video, music, pdf, doc, xls, ppt formats with associated markers.
+- Fixed issue when "big thumb" for video files become smaller than desired min size
+
 version 1.0.14
-+ Added integration with VideoJS plugin to allow display of "film" icon in square mode
++ Added integration with VideoJS plugin to allow display of "film" icon in Overlay Ex mode
 - Fixed issue with incorrect callback when "RV Thumb Scroller" plugin is used
 
 version 1.0.13

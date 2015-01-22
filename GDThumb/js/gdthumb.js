@@ -47,7 +47,7 @@ var GDThumb = {
   // Build thumb metadata
   build: function () {
 
-    if ((GDThumb.method == 'square') && (GDThumb.big_thumb != null) && (GDThumb.big_thumb.height != GDThumb.big_thumb.width)) {
+    if ((GDThumb.method == 'square') && (GDThumb.big_thumb != null) && ((GDThumb.big_thumb.height != GDThumb.big_thumb.width) || (GDThumb.big_thumb.height < GDThumb.max_height))){
       var main_width = jQuery('ul.thumbnails').width();
       var max_col_count = Math.floor(main_width / GDThumb.max_height);
       var thumb_width   = Math.floor(main_width / max_col_count) - GDThumb.margin;

@@ -1,7 +1,11 @@
 {if !empty($thumbnails)}
-
+{*
+  {$thumbnails|print_r}
+*}
 {foreach from=$thumbnails item=thumbnail}
 {assign var=derivative value=$pwg->derivative($GDThumb_derivative_params, $thumbnail.src_image)}
+{assign var=media_type value={media_type file=$thumbnail.file}}
+
 <li class="gdthumb">
   {if $GDThumb.thumb_mode_photo !== "hide" }
   <span class="thumbLegend {$GDThumb.thumb_mode_photo}">
@@ -19,14 +23,19 @@
       {$thumbnail.NAME}
       {/if}
     {/if}
+    {if $GDThumb.thumb_mode_album !== "overlay-ex"}
       {if !empty($thumbnail.icon_ts)}
       <img title="{$thumbnail.icon_ts.TITLE}" src="{$ROOT_URL}{$themeconf.icon_dir}/recent.png" alt="(!)">
       {/if}
+    {/if}
     </span>
     {if $GDThumb.thumb_mode_album == "overlay-ex"}
       <span class="thumbInfo">
         <span class="hit-num">{$thumbnail.hit}</span>
-        <span class="glyphicon {if $derivative->is_cached()}{if $derivative->get_url()|strstr:"/piwigo-videojs/"}glyphicon-film{else}glyphicon-picture{/if}{else}glyphicon-picture{/if}"></span>
+        <span class="glyphicon {if $media_type=="video"}glyphicon-film{elseif $media_type=="music"}glyphicon-music{elseif $media_type=="doc"}glyphicon-file{elseif $media_type=="pdf"}glyphicon-book{else}glyphicon-picture{/if}"></span>
+        {if !empty($thumbnail.icon_ts)}
+        <span class="new-thumb glyphicon glyphicon-asterisk" title="{$thumbnail.icon_ts.TITLE}" alt="(!)"></span>
+        {/if}
         {if $thumbnail.rating_score > 0}
         <span class="rank-num glyphicon glyphicon-star">{$thumbnail.rating_score|string_format:"%d"}</span>
         {/if}
