@@ -9,6 +9,7 @@ var GDThumb = {
   small_thumb: null,
   method: 'crop',
   t: new Array,
+  do_merge: false,
 
   // Initialize plugin logic, perform necessary steps
   setup: function(method, max_height, margin, do_merge, big_thumb, check_pv) {
@@ -19,10 +20,16 @@ var GDThumb = {
     GDThumb.margin     = margin;
     GDThumb.method     = method;
     GDThumb.check_pv   = check_pv;
+    GDThumb.do_merge   = do_merge;
+    GDThumb.big_thumb  = big_thumb;
 
-    if (do_merge) { GDThumb.merge(); }
+    $(window).bind("RVTS_loaded", function() { GDThumb.init(); });
+    GDThumb.init();
+  },
 
-    GDThumb.big_thumb = big_thumb;
+  init: function() {
+    if (GDThumb.do_merge) { GDThumb.merge(); }
+
     GDThumb.build();
     jQuery(window).bind('RVTS_loaded', GDThumb.build);
     jQuery('ul.thumbnails').resize(GDThumb.process);

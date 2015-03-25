@@ -5,8 +5,9 @@
 {foreach from=$thumbnails item=thumbnail}
 {assign var=derivative value=$pwg->derivative($GDThumb_derivative_params, $thumbnail.src_image)}
 {assign var=media_type value={media_type file=$thumbnail.file}}
+{assign var=media_type_name value={$media_type|capitalize:false:true}}
 
-<li class="gdthumb">
+<li class="gdthumb{if $GDThumb.thumb_animate} animate{/if}">
   {if $GDThumb.thumb_mode_photo !== "hide" }
   <span class="thumbLegend {$GDThumb.thumb_mode_photo}">
     <span class="thumbName thumbTitle">
@@ -18,7 +19,7 @@
       {assign var="file_title" value=$thumbnail.NAME|cat:"."}
       {assign var="file_name" value=$thumbnail.file|replace:"_":" "}
       {if $file_name|strstr:$file_title}
-      Photo {$thumbnail.id}
+      {$media_type_name|@translate} {$thumbnail.id}
       {else}
       {$thumbnail.NAME}
       {/if}
@@ -37,7 +38,7 @@
         <span class="new-thumb glyphicon glyphicon-asterisk" title="{$thumbnail.icon_ts.TITLE}" alt="(!)"></span>
         {/if}
         {if $thumbnail.rating_score > 0}
-        <span class="rank-num glyphicon glyphicon-star">{$thumbnail.rating_score|string_format:"%d"}</span>
+        <span class="rank-num"><i class="glyphicon glyphicon-star"></i>{$thumbnail.rating_score|string_format:"%d"}</span>
         {/if}
       </span>
     {elseif $GDThumb.thumb_metamode !== "hide"}

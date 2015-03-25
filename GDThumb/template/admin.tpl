@@ -7,7 +7,7 @@
       {/if}
       <li><a href="http://piwigo.org/forum/viewtopic.php?id=24413" target="_blank">{'Support'|@translate}</a>&nbsp;|&nbsp;</li>
       <li><a title="Follow me on Twitter" href="http://twitter.com/greydragon_th" target="_blank">{'Follow'|@translate}</a>&nbsp;|&nbsp;</li>
-      <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=9MWBSVJMWMJEU" target="_blank">{'Coffee Fund'|@translate}</a>&nbsp;|&nbsp;</li>
+      <li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GYVNZCNDMSD58" target="_blank">{'Coffee Fund'|@translate}</a>&nbsp;|&nbsp;</li>
       <li><a href="http://piwigo.org/ext/extension_view.php?eid=771" onclick="return false" target="_blank">{'Download'|@translate}</a></li>
     </ul>
   </div>
@@ -83,6 +83,7 @@
       </select>
       <label for="thumb_metamode">{'Metadata Display Mode'|@translate}</label>
     </li>
+    <li><label><span class="graphicalCheckbox {if $THUMB_ANIMATE}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="thumb_animate" id="thumb_animate" type="checkbox" value="1" {if $THUMB_ANIMATE}checked="checked"{/if}>{'Animate thumbnail on hover'|@translate}</label></li>
   </ul>
 </fieldset>
 
@@ -122,7 +123,7 @@
   {combine_css path="themes/default/js/plugins/colorbox/style2/colorbox.css"}
   {combine_css path=$GDTHEME_PATH|cat:"admin/css/styles.css"}
   {combine_script id='jquery.colorbox' load='footer' require='jquery' path='themes/default/js/plugins/jquery.colorbox.min.js' }
-  {combine_script id='greydragon.admin' load='footer' require='jquery,jquery.ui.button.js' path=$GDTHEME_PATH|cat:"admin/js/admin.js" }
+  {combine_script id='greydragon.admin' load='footer' require='jquery' path=$GDTHEME_PATH|cat:"admin/js/admin.js" }
 {else}
 {html_head}{literal}
 <style type="text/css">

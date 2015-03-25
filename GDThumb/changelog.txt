@@ -25,6 +25,13 @@ details. You should have received a copy of the GNU General Public License along
 51 Franklin Street Fifth Floor, Boston, MA  02110-1301, USA.
 
 === Changelog ===
+version 1.0.16
++ ADMIN: Added new option  "Animate thumbnail on hover"
++ Added event integration with RV Thumb Scroller
++ Corrected PayPal link for "Donate" link in admin area
+- Remove reference to jquery.ui.button.js in admin page
+- Added check for shared system variables to prevent conflict with other GD plugins and themes
+
 version 1.0.15
 + In Overlay Ex mode place "New Item" marker is placed in metadata area
 + Further and final improvement for file type markers in Overlay Ex mode. Now sensitive to file extensions. Supports image, video, music, pdf, doc, xls, ppt formats with associated markers.

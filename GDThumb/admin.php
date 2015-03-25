@@ -93,18 +93,19 @@ if (isset($_POST['submit'])) {
 
   $big_thumb = !empty($_POST['big_thumb']);
   $params  = array(
-    'height'          => $_POST['height'],
-    'margin'          => $_POST['margin'],
-    'nb_image_page'   => $_POST['nb_image_page'],
-    'big_thumb'       => $big_thumb,
-    'big_thumb_noinpw'=> !empty($_POST['big_thumb_noinpw']),
-    'cache_big_thumb' => !empty($_POST['cache_big_thumb']),
-    'normalize_title' => $normalize,
-    'method'          => $method,
-    'thumb_mode_album'=> $_POST['thumb_mode_album'],
-    'thumb_mode_photo'=> $_POST['thumb_mode_photo'],
-    'thumb_metamode'  => $_POST['thumb_metamode'],
-    'no_wordwrap'     => !empty($_POST['no_wordwrap'])
+      'height'          => $_POST['height']
+    , 'margin'          => $_POST['margin']
+    , 'nb_image_page'   => $_POST['nb_image_page']
+    , 'big_thumb'       => $big_thumb
+    , 'big_thumb_noinpw'=> !empty($_POST['big_thumb_noinpw'])
+    , 'cache_big_thumb' => !empty($_POST['cache_big_thumb'])
+    , 'normalize_title' => $normalize
+    , 'method'          => $method
+    , 'thumb_mode_album'=> $_POST['thumb_mode_album']
+    , 'thumb_mode_photo'=> $_POST['thumb_mode_photo']
+    , 'thumb_metamode'  => $_POST['thumb_metamode']
+    , 'no_wordwrap'     => !empty($_POST['no_wordwrap'])
+    , 'thumb_animate'   => !empty($_POST['thumb_animate'])
   );
 
   if (!is_numeric($params['height'])) {
@@ -157,6 +158,7 @@ $template->assign(
     'GDTHEME_PATH'     => GDTHEME_PATH,
     'GDTHUMB_VERSION'  => GDTHUMB_VERSION,
     'PHPWG_ROOT_PATH'  => PHPWG_ROOT_PATH,
+
     'HEIGHT'           => $params['height'],
     'MARGIN'           => $params['margin'],
     'NB_IMAGE_PAGE'    => $params['nb_image_page'],
@@ -169,6 +171,8 @@ $template->assign(
     'THUMB_MODE_PHOTO' => $params['thumb_mode_photo'],
     'THUMB_METAMODE'   => $params['thumb_metamode'],
     'NO_WORDWRAP'      => isset($params['no_wordwrap']) && $params['no_wordwrap'],
+    'THUMB_ANIMATE'    => isset($params['thumb_animate']) && $params['thumb_animate'],
+
     'PWG_TOKEN'        => get_pwg_token(),
     'CUSTOM_CSS'       => $custom_css
   )

@@ -9,7 +9,7 @@
 {combine_script id='jquery.ajaxmanager' path='themes/default/js/plugins/jquery.ajaxmanager.js' load='footer'}
 {combine_script id='thumbnails.loader' path='themes/default/js/thumbnails.loader.js' require='jquery.ajaxmanager' load='footer'}
 {/if}
-  <li class="gdthumb">
+  <li class="gdthumb{if $GDThumb.thumb_animate} animate{/if}">
     {if $GDThumb.thumb_mode_album !== "hide" }
     <span class="thumbLegend {$GDThumb.thumb_mode_album}">
       <span class="thumbName">
