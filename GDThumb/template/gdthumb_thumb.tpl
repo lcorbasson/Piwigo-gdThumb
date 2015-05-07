@@ -1,11 +1,9 @@
 {if !empty($thumbnails)}
-{*
-  {$thumbnails|print_r}
-*}
-{foreach from=$thumbnails item=thumbnail}
-{assign var=derivative value=$pwg->derivative($GDThumb_derivative_params, $thumbnail.src_image)}
-{assign var=media_type value={media_type file=$thumbnail.file}}
-{assign var=media_type_name value={$media_type|capitalize:false:true}}
+  {foreach from=$thumbnails item=thumbnail}
+  {assign var=derivative value=$pwg->derivative($GDThumb_derivative_params, $thumbnail.src_image)}
+  {assign var=media_type value={media_type file=$thumbnail.file}}
+  {assign var=media_type_name value={$media_type|capitalize:false:true}}
+  {* {$thumbnails|print_r} *}
 
 <li class="gdthumb{if $GDThumb.thumb_animate} animate{/if}">
   {if $GDThumb.thumb_mode_photo !== "hide" }

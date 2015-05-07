@@ -25,6 +25,10 @@ details. You should have received a copy of the GNU General Public License along
 51 Franklin Street Fifth Floor, Boston, MA  02110-1301, USA.
 
 === Changelog ===
+version 1.0.17
++ All language translations are deprecated to allow full reset. en_UK folder now includes full set of translation resources
+- Removed duplicate reference to cache build js files
+
 version 1.0.16
 + ADMIN: Added new option  "Animate thumbnail on hover"
 + Added event integration with RV Thumb Scroller
