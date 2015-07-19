@@ -25,6 +25,14 @@ details. You should have received a copy of the GNU General Public License along
 51 Franklin Street Fifth Floor, Boston, MA  02110-1301, USA.
 
 === Changelog ===
+version 1.0.18
++ ADMIN: style improvements
++ ADMIN: Experimental: New option for Thumbnail mode - "slide" - Square thumb with standard static Overlay (bottom/top)
++ ADMIN: Changed to use standard PWG persistance method for settings
++ Improved handling of derivatives
+- Fixed issue with Photo thumb metadata not including Visits and Rating metadata
+- Translation improvements. New languages: NO, TR, GR, PT
+
 version 1.0.17
 + All language translations are deprecated to allow full reset. en_UK folder now includes full set of translation resources
 - Removed duplicate reference to cache build js files

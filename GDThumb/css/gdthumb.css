@@ -1,6 +1,6 @@
-ul.thumbnails { overflow: hidden; }
+ul.thumbnails { overflow: hidden; background: inherit; }
 
-ul.thumbnails .gdthumb   { position: relative; overflow: hidden; float: left; display: inline; background: none !important; }
+ul.thumbnails .gdthumb   { position: relative; overflow: hidden; float: left; display: inline; background: inherit !important; }
 ul.thumbnails .gdthumb a { position: absolute; z-index:0; }
 
 ul.thumbnails .gdthumb a img.thumbnail, ul.thumbnails .gdthumb a img.thumbnail:hover { border: 0 none; margin: 0; padding: 0; top: 0; border-radius: 0; }
@@ -8,7 +8,8 @@ ul.thumbnails .gdthumb a img.thumbnail, ul.thumbnails .gdthumb a img.thumbnail:h
 ul.thumbnails .gdthumb.animate img { -webkit-transition: 700ms; -moz-transition: 700ms; -o-transition: 700ms; transition: 700ms; }
 ul.thumbnails .gdthumb.animate:hover img { transform: scale(1.5,1.5) rotate(10deg); -ms-transform: scale(1.5,1.5) rotate(10deg); -webkit-transform: scale(1.5,1.5) rotate(10deg); -o-transform: scale(1.5,1.5) rotate(10deg); -moz-transform: scale(1.5,1.5) rotate(10deg); }
 
-ul.thumbnails .gdthumb .thumbLegend    { position: absolute; z-index: 1; height: 5em; left:0; right:0; padding:5px 0; width:100%; background:rgba(0,0,0,0.7); text-align:center; overflow:hidden; color:#aaa; padding-left: 4px; padding-right: 4px; }
+ul.thumbnails .gdthumb .thumbLegend { position: absolute; z-index: 1; height: 5em; left:0; right:0; padding:5px 0; width:100%; background:rgba(0,0,0,0.7); text-align:center; overflow:hidden; color:#aaa; padding-left: 4px; padding-right: 4px; }
+ul.thumbnails .gdthumb.slide .thumbLegend { background: inherit; height: auto; }
 
 ul.thumbnails .thumbLegend .thumbName  { display:block; color:#eee; }
 ul.thumbnails .thumbLegend .thumbName span { display:block; overflow: hidden; text-overflow:ellipsis; }
@@ -48,5 +49,9 @@ ul.thumbnails .gdthumb .overlay-ex.thumbLegend .thumbInfo .hit-num   { backgroun
 ul.thumbnails .gdthumb .overlay-ex.thumbLegend .thumbInfo .rank-num  { float: right; margin-top: 2px; vertical-align: middle; height: 20px; line-height: 20px; }
 ul.thumbnails .gdthumb .overlay-ex.thumbLegend .thumbInfo .glyphicon { padding-top: 3px; font-size: 17px; }
 
-
 ul.thumbnails.nowrap .gdthumb .thumbLegend { white-space: nowrap; overflow: hidden; height: auto; }
+
+body.theme-whitehawk .gdthumb.slide { border: 1px solid #000; }
+body.theme-whitehawk .gdthumb.slide .thumbLegend.bottom_static { background: #FFF; color: #555; }
+body.theme-whitehawk .gdthumb.slide .thumbLegend.bottom_static .thumbTitle { color: #555; }
+body.theme-whitehawk .gdthumb.slide .thumbLegend.bottom_static .thumbName { color: #555; }

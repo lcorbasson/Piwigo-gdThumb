@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: gdThumb
-Version: 1.0.17
+Version: 1.0.18
 Description: Apply Masonry style to album or image thumbs
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=771
 Author: Serge Dosyukov 
@@ -18,7 +18,7 @@ if (mobile_theme()) return;
 // +-----------------------------------------------------------------------+
 // | Plugin constants                                               |
 // +-----------------------------------------------------------------------+
-define('GDTHUMB_VERSION', '1.0.17');
+define('GDTHUMB_VERSION', '1.0.18');
 define('GDTHUMB_ID',      basename(dirname(__FILE__)));
 define('GDTHUMB_PATH' ,   PHPWG_PLUGINS_PATH . GDTHUMB_ID . '/');
 if (!defined('GDTHEME_PATH')):
@@ -27,11 +27,7 @@ endif;
 
 if (!isset($conf['gdThumb'])):
   include(dirname(__FILE__).'/config_default.inc.php');
-
-  $query = '
-INSERT INTO ' . CONFIG_TABLE . ' (param,value,comment)
-VALUES ("gdThumb" , "'.addslashes(serialize($config_default)).'" , "GDThumb plugin parameters");';
-  pwg_query($query);
+  conf_update_param('gdThumb', $config_default);
   load_conf_from_db();
 endif;
 
@@ -112,10 +108,18 @@ function GDThumb_process_thumb($tpl_vars, $pictures) {
 
   $template->set_filename( 'index_thumbnails', dirname(__FILE__) . '/template/gdthumb_thumb.tpl');
   $template->assign('GDThumb', $confTemp);
-  $template->assign('GDThumb_derivative_params', ImageStdParams::get_custom(9999, $confTemp['height']));
+  if (($confTemp['method'] == "slide") || ($confTemp['method'] == "square")):
+    $template->assign('GDThumb_derivative_params', ImageStdParams::get_custom($confTemp['height'], 9999));
+  else:
+    $template->assign('GDThumb_derivative_params', ImageStdParams::get_custom(9999, $confTemp['height']));
+  endif;
 
   if ($confTemp['big_thumb'] and !empty($tpl_vars[0])):
-    $derivative_params = ImageStdParams::get_custom(9999, 2 * $confTemp['height'] + $confTemp['margin']);
+    if (($confTemp['method'] == "slide") || ($confTemp['method'] == "square")):
+      $derivative_params = ImageStdParams::get_custom(2 * $confTemp['height'] + $confTemp['margin'], 9999);
+    else:
+      $derivative_params = ImageStdParams::get_custom(9999, 2 * $confTemp['height'] + $confTemp['margin']);
+    endif;
     $template->assign('GDThumb_big', new DerivativeImage($derivative_params, $tpl_vars[0]['src_image']));
   endif;
 
@@ -131,12 +135,20 @@ function GDThumb_process_category($tpl_vars) {
 
   $template->set_filename( 'index_category_thumbnails', dirname(__FILE__) . '/template/gdthumb_cat.tpl');
   $template->assign('GDThumb', $confTemp);
-  $template->assign('GDThumb_derivative_params', ImageStdParams::get_custom(9999, $confTemp['height']));
+  if (($confTemp['method'] == "slide") || ($confTemp['method'] == "square")):
+    $template->assign('GDThumb_derivative_params', ImageStdParams::get_custom($confTemp['height'], 9999));
+  else:
+    $template->assign('GDThumb_derivative_params', ImageStdParams::get_custom(9999, $confTemp['height']));
+  endif;
 
   if ($confTemp['big_thumb'] and !empty($tpl_vars[0])):
     $id = $tpl_vars[0]["representative_picture_id"];
     if (($id) && ($rep = $tpl_vars[0]["representative"])):
-      $derivative_params = ImageStdParams::get_custom(9999, 2 * $confTemp['height'] + $confTemp['margin']);
+      if (($confTemp['method'] == "slide") || ($confTemp['method'] == "square")):
+        $derivative_params = ImageStdParams::get_custom(2 * $confTemp['height'] + $confTemp['margin'], 9999);
+      else:
+        $derivative_params = ImageStdParams::get_custom(9999, 2 * $confTemp['height'] + $confTemp['margin']);
+      endif;
       $template->assign('GDThumb_big', new DerivativeImage($derivative_params, $rep['src_image']));
     endif;
   endif;

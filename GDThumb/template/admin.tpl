@@ -23,6 +23,15 @@
       </select>
       <label for="direction">{'Masonry Type'|@translate}</label>
     </li>
+    <li>
+      <select id="method" name="method" >
+        <option {if $METHOD == 'crop'}selected="selected"{/if} value="crop">{'Crop (Default)'|@translate}</option>
+        <option {if $METHOD == 'resize'}selected="selected"{/if} value="resize">{'Resize'|@translate}</option>
+        <option {if $METHOD == 'square'}selected="selected"{/if} value="square">{'Square'|@translate}</option>
+        <option {if $METHOD == 'slide'}selected="selected"{/if} value="slide">{'Slide'|@translate}</option>
+      </select>
+      <label for="method">{'Thumbnail Mode'|@translate}</label>
+    </li>
     <li><input id="height" type="text" size="2" maxlength="3" name="height" value="{$HEIGHT}"><label for="height">{'Thumbnails max height'|@translate}&nbsp;(px)</label></li>
     <li><input id="margin" type="text" size="2" maxlength="3" name="margin" value="{$MARGIN}"><label for="margin">{'Margin between thumbnails'|@translate}&nbsp;px</label></li>
     <li><input id="nb_image_page" type="text" size="2" maxlength="3" name="nb_image_page" value="{$NB_IMAGE_PAGE}"><label for="nb_image_page">{'Number of photos per page'|@translate}</label></li>
@@ -30,6 +39,7 @@
     <li><label><span class="graphicalCheckbox {if $BIG_THUMB}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="big_thumb" id="big_thumb" type="checkbox" value="1" {if $BIG_THUMB}checked="checked"{/if}>{'Double the size of the first thumbnail'|@translate}</label></li>
     <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label><span class="graphicalCheckbox {if $BIG_THUMB_NOINPW}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="big_thumb_noinpw" id="big_thumb_noinpw" type="checkbox" value="1" {if $BIG_THUMB_NOINPW}checked="checked"{/if}>{'Block for Panoramic Photo Page'|@translate} (x2.2+)</label></li>
     <li><label><span class="graphicalCheckbox {if $CACHE_BIG_THUMB}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="cache_big_thumb" id="cache_big_thumb" type="checkbox" value="1" {if $CACHE_BIG_THUMB}checked="checked"{/if}>{'Cache the big thumbnails (recommended)'|@translate}</label></li>
+    <li><label><span class="graphicalCheckbox {if $THUMB_ANIMATE}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="thumb_animate" id="thumb_animate" type="checkbox" value="1" {if $THUMB_ANIMATE}checked="checked"{/if}>{'Animate thumbnail on hover'|@translate}</label></li>
     <li>
       <select id="normalize_title" name="normalize_title" >
         <option {if $NORMALIZE_TITLE == 'off'}selected="selected"{/if} value="off">{'Do not Normalize (Default)'|@translate}</option>
@@ -39,14 +49,6 @@
       <label for="normalize_title">{'Normalize Photo Title'|@translate}</label>
     </li>
     <li><label><span class="graphicalCheckbox {if $NO_WORDWRAP}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="no_wordwrap" id="no_wordwrap" type="checkbox" value="1" {if $NO_WORDWRAP}checked="checked"{/if}>{'Prevent word wrap'|@translate}</label></li>
-    <li>
-      <select id="method" name="method" >
-        <option {if $METHOD == 'crop'}selected="selected"{/if} value="crop">{'Crop (Default)'|@translate}</option>
-        <option {if $METHOD == 'resize'}selected="selected"{/if} value="resize">{'Resize'|@translate}</option>
-        <option {if $METHOD == 'square'}selected="selected"{/if} value="square">{'Square'|@translate}</option>
-      </select>
-      <label for="method">{'Scale thumbnails'|@translate}</label>
-    </li>
     <li>
       <select id="thumb_mode_album" name="thumb_mode_album" >
         <option {if $THUMB_MODE_ALBUM=="top"}selected="selected"{/if} value="top">{'Overlay Top'|@translate}</option>
@@ -83,14 +85,13 @@
       </select>
       <label for="thumb_metamode">{'Metadata Display Mode'|@translate}</label>
     </li>
-    <li><label><span class="graphicalCheckbox {if $THUMB_ANIMATE}icon-check{else}icon-check-empty{/if}">&nbsp;</span><input name="thumb_animate" id="thumb_animate" type="checkbox" value="1" {if $THUMB_ANIMATE}checked="checked"{/if}>{'Animate thumbnail on hover'|@translate}</label></li>
   </ul>
 </fieldset>
 
 <p>
   <input type="hidden" name="pwg_token" value="{$PWG_TOKEN}">
   <input type="submit" name="submit" value="{'Submit'|@translate}">
-  <input type="submit" name="cachedelete" id="cachedelete" value="{'Purge thumbnails cache'|@translate}" title="{'Delete images in GDThumb cache.'|@translate}" onclick="return confirm('{'Are you sure?'|@translate}');">
+  <input type="button" name="cachedelete" id="cachedelete" value="{'Purge thumbnails cache'|@translate}" title="{'Delete images in GDThumb cache.'|@translate}" onclick="return confirm('{'Are you sure?'|@translate}');">
   <input type="button" name="cachebuild" id="cachebuild" value="{'Pre-cache thumbnails'|@translate}" title="{'Finds images that have not been cached and creates the cached version.'|@translate}" onclick="jQuery.gdThumb_start();">
 </p>
 </form>

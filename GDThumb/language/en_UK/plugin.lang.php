@@ -33,7 +33,7 @@ $lang['Photo # if FileName Detected'] = 'Photo # if FileName Detected';
 $lang['Pre-cache thumbnails'] = 'Pre-cache thumbnails';
 $lang['Prevent word wrap'] = 'Prevent word wrap';
 $lang['Purge thumbnails cache'] = 'Purge thumbnails cache';
-$lang['Scale thumbnails'] = 'Scale thumbnails';
+$lang['Thumbnail Mode'] = 'Thumbnail Mode';
 $lang['Show thumbnails caption'] = 'Show thumbnails caption';
 $lang['Square'] = 'Square';
 $lang['Start'] = 'Start';
@@ -43,5 +43,15 @@ $lang['Title Display Mode (Album)'] = 'Title Display Mode (Album)';
 $lang['Title Display Mode (Photo)'] = 'Title Display Mode (Photo)';
 $lang['Use Description if Set'] = 'Use Description if Set';
 $lang['Vertical'] = 'Vertical';
- 
+$lang['Slide'] = 'Slide';
+$lang['%d visit'] = '%d visit';
+$lang['%d visits'] = '%d visits';
+$lang['Big thumb cannot be used in Slide mode. Disabled'] = 'Big thumb cannot be used in Slide mode. Disabled';
+$lang['Margin between thumbnails must be an integer'] = 'Margin between thumbnails must be an integer';
+$lang['Number of photos per page must be an integer'] = 'Number of photos per page must be an integer';
+$lang['Rating:'] = 'Rating:';
+$lang['This Thumb mode cannot be used in Slide mode. Changed to default'] = 'This Thumb mode cannot be used in Slide mode. Changed to default';
+$lang['Thumb animation cannot be used in Slide mode. Disabled'] = 'Thumb animation cannot be used in Slide mode. Disabled';
+$lang['Thumbnails max height must be an integer'] = 'Thumbnails max height must be an integer';
+
 ?>

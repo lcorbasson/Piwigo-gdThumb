@@ -6,7 +6,7 @@
 {foreach from=$category_thumbnails item=cat name=cat_loop}
 {assign var=derivative value=$pwg->derivative($GDThumb_derivative_params, $cat.representative.src_image)}
 
-  <li class="gdthumb{if $GDThumb.thumb_animate} animate{/if}">
+  <li class="gdthumb{if $GDThumb.thumb_animate} animate{/if} {$GDThumb.method}">
     {if $GDThumb.thumb_mode_album !== "hide" }
     <span class="thumbLegend {$GDThumb.thumb_mode_album}">
       <span class="thumbName">

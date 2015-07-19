@@ -63,20 +63,27 @@ var GDThumb = {
       GDThumb.big_thumb.width  = GDThumb.big_thumb.height;
       GDThumb.big_thumb.crop   = GDThumb.big_thumb.height;
       GDThumb.max_height = thumb_width;
-    } 
+    } else if (GDThumb.method == 'slide') {
+      var main_width = jQuery('ul.thumbnails').width();
+      var max_col_count = Math.floor(main_width / GDThumb.max_height);
+      var thumb_width   = Math.floor(main_width / max_col_count) - GDThumb.margin;
+      GDThumb.max_height = thumb_width;
+    }
 
     GDThumb.t = new Array;
     $('ul.thumbnails img.thumbnail').each(function(index) {
       width = parseInt(jQuery(this).attr('width'));
       height = parseInt(jQuery(this).attr('height'));
       th = {index: index, width: width, height: height, real_width: width, real_height: height};
+
       if (GDThumb.check_pv) {
         var ratio = th.width / th.height;
         GDThumb.big_thumb_block = (ratio > 2.2) || (ratio < 0.455);
       }
-      if ((GDThumb.method == 'square') && (th.height != th.width)) {
-        th.height = GDThumb.max_height;
+
+      if (((GDThumb.method == 'square') || (GDThumb.method == 'slide')) && (th.height != th.width)) {
         th.width  = GDThumb.max_height;
+        th.height = GDThumb.max_height;
         th.crop   = GDThumb.max_height;
       } else if (height < GDThumb.max_height) {
         th.width = Math.round(GDThumb.max_height * width / height);
@@ -109,7 +116,12 @@ var GDThumb = {
     var first_thumb = jQuery('ul.thumbnails img.thumbnail:first');
     var best_size = {width: 1, height: 1};
 
-    if (GDThumb.method == 'square') {
+    if (GDThumb.method == 'slide') {
+      best_size.width  = GDThumb.max_height;
+      best_size.height = GDThumb.max_height;
+
+      GDThumb.resize(first_thumb, GDThumb.t[0].real_width, GDThumb.t[0].real_height, GDThumb.t[0].width, GDThumb.t[0].height, false);
+    } else if (GDThumb.method == 'square') {
       if (GDThumb.big_thumb != null) {
         best_size.width = GDThumb.big_thumb.width;
         best_size.height = GDThumb.big_thumb.height;
@@ -214,7 +226,7 @@ var GDThumb = {
 
         for (j=0;j<thumb_process.length;j++) {
 
-          if (GDThumb.method == 'square') {
+          if ((GDThumb.method == 'square') || (GDThumb.method == 'slide')) {
             new_width  = GDThumb.max_height;
             new_height = GDThumb.max_height;
           } else {
@@ -253,7 +265,10 @@ var GDThumb = {
   },
 
   resize: function(thumb, width, height, new_width, new_height, is_big) {
-    if ((!is_big) && (GDThumb.method == 'square')) {
+
+    use_crop = true;
+    if (GDThumb.method == 'slide') {
+      use_crop = false;
       thumb.css({height: '', width: ''});
       new_width = new_height;
 
@@ -267,6 +282,24 @@ var GDThumb = {
 
       height_crop = Math.round((real_height - new_height) / 2);
       width_crop = Math.round((real_width - new_height) / 2);
+      thumb.css({
+        height: real_height+'px',
+        width: real_width+'px'
+      });
+    } else if ((!is_big) && (GDThumb.method == 'square')) {
+      thumb.css({height: '', width: ''});
+      new_width = new_height;
+
+      if (width < height) {
+        real_height = Math.round(height * new_width / width);
+        real_width  = new_width;
+      } else {
+        real_height = new_width;
+        real_width  = Math.round(width * new_height / height);
+      }
+
+      height_crop = Math.round((real_height - new_height) / 2);
+      width_crop = Math.round((real_width - new_width) / 2);
       thumb.css({
         height: real_height+'px',
         width: real_width+'px'
@@ -297,6 +330,10 @@ var GDThumb = {
     }
 
     thumb.parents('li').css({ height: new_height+'px', width: new_width+'px' });
-    thumb.parent('a').css({ clip: 'rect('+height_crop+'px, '+(new_width+width_crop)+'px, '+(new_height+height_crop)+'px, '+width_crop+'px)', top: -height_crop+'px', left: -width_crop+'px' });
+    if (use_crop) {
+      thumb.parent('a').css({ clip: 'rect('+height_crop+'px, '+(new_width+width_crop)+'px, '+(new_height+height_crop)+'px, '+width_crop+'px)', top: -height_crop+'px', left: -width_crop+'px' });
+    } else {
+      thumb.parent('a').css({ top: -height_crop+'px', left: -width_crop+'px' });
+    }
   }
 }
