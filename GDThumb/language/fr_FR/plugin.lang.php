@@ -20,7 +20,7 @@
 // | Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, |
 // | USA.                                                                  |
 // +-----------------------------------------------------------------------+
-$lang['Animate thumbnail on hover'] = 'Animer la miniature au survol';
+$lang['Animate thumbnail on hover'] = 'Animer les miniatures au survol';
 $lang['Cache Informations'] = 'Informations en cache';
 $lang['Cache have been generated'] = 'Le cache a été généré';
 $lang['Use Description if Set'] = 'Utiliser la description si renseignée';
@@ -28,11 +28,11 @@ $lang['Show thumbnails caption'] = 'Afficher la légende de la miniature';
 $lang['Block for Panoramic Photo Page'] = 'Bloc de page pour les photos panoramiques';
 $lang['Vertical'] = 'Verticale';
 $lang['Pause'] = 'Pause';
-$lang['Pre-cache thumbnails'] = 'Mettre les miniatures en pre-cache';
+$lang['Pre-cache thumbnails'] = 'Mettre les miniatures en pré-cache';
 $lang['Purge thumbnails cache'] = 'Purger le cache des miniatures';
-$lang['Scale thumbnails'] = 'Echelle des miniatures';
+$lang['Scale thumbnails'] = 'Échelle des miniatures';
 $lang['Square'] = 'Carré';
-$lang['Start'] = 'Demarrer';
+$lang['Start'] = 'Démarrer';
 $lang['Stop'] = 'Arrêter';
 $lang['Thumbnails max height'] = 'Hauteur max des miniatures';
 $lang['Title Display Mode (Album)'] = 'Mode d\'affichage des titres (album)';
@@ -49,17 +49,17 @@ $lang['Finds images that have not been cached and creates the cached version.'] 
 $lang['Follow'] = 'Suivre';
 $lang['Horizontal (Default)'] = 'Horizontale (par défaut)';
 $lang['Margin between thumbnails'] = 'Espace entre les miniatures';
-$lang['Masonry Type'] = 'Type de décors';
+$lang['Masonry Type'] = 'Type de mise en page';
 $lang['Merged (Default)'] = 'Fusionné (par défaut)';
-$lang['Merged with Description'] = 'Fusionner avec description';
-$lang['Metadata Display Mode'] = 'Mode d\'affichage des metadatas';
+$lang['Merged with Description'] = 'Fusionné, avec descriptions';
+$lang['Metadata Display Mode'] = 'Mode d\'affichage des métadonnées';
 $lang['Normalize Photo Title'] = 'Normaliser les titres des photos';
 $lang['Overlay'] = 'Superposition';
 $lang['Overlay Bottom'] = 'Superposer en bas';
-$lang['Overlay Bottom (Static)'] = 'Superposer en bas';
-$lang['Overlay Ex'] = 'Superposer ex';
+$lang['Overlay Bottom (Static)'] = 'Superposer en bas (statique)';
+$lang['Overlay Ex'] = 'Superposer complètement';
 $lang['Overlay Top'] = 'Superposer en haut';
 $lang['Overlay Top (Static)'] = 'Superposer en haut (statique)';
 $lang['Coffee Fund'] = 'Me payer un café';
-$lang['Photo # if FileName Detected'] = 'Utiliser l\'ID de la photo comme nom';
-$lang['Prevent word wrap'] = 'Empêcher le dépassement de mot';
+$lang['Photo # if FileName Detected'] = 'ID de la photo plutôt que le nom de fichier';
+$lang['Prevent word wrap'] = 'Raccourcir les textes si nécessaire pour éviter tout débordement';
